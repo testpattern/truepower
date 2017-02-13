@@ -9,6 +9,6 @@
     "http-server": "*"
   },
   "scripts": {
-    "start": "http-server ./ -p ${PORT:=5000} -c-1"
+    "start": "http-server ./ -p ${PORT:=8000} -c-1"
   }
 }
