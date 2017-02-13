@@ -49,6 +49,10 @@ app.post('/webhook/', function (req, res) {
   }
 });
 
+function receivedMessage(event) {
+  // Putting a stub for now, we'll expand it in the following steps
+  console.log("Message data: ", event.message);
+}
 // app.post('/webhook/', function (req, res) {
 //     let messaging_events = req.body.entry[0].messaging
 //     for (let i = 0; i < messaging_events.length; i++) {
