@@ -1,13 +1,14 @@
 {
   "version": "1.0.0",
   "description": "A basic callback",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "app.js",  
   "author": "Mark Calder",
   "license": "ISC",
   "name": "truepowerapi",
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "http-server": "*"
+  },
+  "scripts": {
+    "start": "http-server ./ -p ${PORT:=5000} -c-1"
+  }
 }
