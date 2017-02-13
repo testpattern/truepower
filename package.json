@@ -1,14 +1,16 @@
 {
   "version": "1.0.0",
   "description": "A basic callback",
-  "main": "app.js",  
+  "main": "app.js",
   "author": "Mark Calder",
   "license": "ISC",
   "name": "truepowerapi",
   "dependencies": {
-    "http-server": "*"
+    "body-parser": "^1.16.1",
+    "express": "^3.21.2",
+    "request": "^2.79.0"
   },
   "scripts": {
-    "start": "http-server ./ -p ${PORT:=8000} -c-1"
+    "start": "node index.js"
   }
 }
