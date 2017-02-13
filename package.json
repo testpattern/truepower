@@ -1,5 +1,4 @@
 {
-  "name": "truepowerapi",
   "version": "1.0.0",
   "description": "A basic callback",
   "main": "app.js",
@@ -7,5 +6,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mark Calder",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "~1.0.0",
+    "express": "~4.9.8"
+  }
 }
