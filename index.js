@@ -20,21 +20,51 @@ app.get('/', function (req, res) {
 })
 
 app.post('/webhook/', function (req, res) {
-    let messaging_events = req.body.entry[0].messaging
-    for (let i = 0; i < messaging_events.length; i++) {
-        let event = req.body.entry[0].messaging[i]
-        let sender = event.sender.id
-        if (event.message && event.message.text) {
-            let text = event.message.text
-            if (text === 'Generic') {
-                sendGenericMessage(sender)
-                continue
-            }
-            sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+  var data = req.body;
+
+  // Make sure this is a page subscription
+  if (data.object === 'page') {
+
+    // Iterate over each entry - there may be multiple if batched
+    data.entry.forEach(function(entry) {
+      var pageID = entry.id;
+      var timeOfEvent = entry.time;
+
+      // Iterate over each messaging event
+      entry.messaging.forEach(function(event) {
+        if (event.message) {
+          receivedMessage(event);
+        } else {
+          console.log("Webhook received unknown event: ", event);
         }
-    }
-    res.sendStatus(200)
-})
+      });
+    });
+
+    // Assume all went well.
+    //
+    // You must send back a 200, within 20 seconds, to let us know
+    // you've successfully received the callback. Otherwise, the request
+    // will time out and we will keep trying to resend.
+    res.sendStatus(200);
+  }
+});
+
+// app.post('/webhook/', function (req, res) {
+//     let messaging_events = req.body.entry[0].messaging
+//     for (let i = 0; i < messaging_events.length; i++) {
+//         let event = req.body.entry[0].messaging[i]
+//         let sender = event.sender.id
+//         if (event.message && event.message.text) {
+//             let text = event.message.text
+//             if (text === 'Generic') {
+//                 sendGenericMessage(sender)
+//                 continue
+//             }
+//             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+//         }
+//     }
+//     res.sendStatus(200)
+// })
 
 // Spin up the server
 app.listen(app.get('port'), function() {
