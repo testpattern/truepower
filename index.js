@@ -62,7 +62,8 @@ app.post('/webhook/', function (req, res) {
 			}
             if (text.toLowerCase() === 'demo') {
 				//sendButtonMessage(sender);
-                demo(sender);
+                //demo(sender);
+                quickReply(sender);
 				continue
 			}
 			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
@@ -78,7 +79,6 @@ app.post('/webhook/', function (req, res) {
 
 // recommended to inject access tokens as environmental variables, e.g.
 const token = process.env.FB_PAGE_ACCESS_TOKEN
-//const token = process.env.FB_PAGE_ACCESS "<FB_PAGE_ACCESS_TOKEN>"
 
 function sendTextMessage(sender, text) {
 	let messageData = { text:text }
@@ -100,34 +100,69 @@ function sendTextMessage(sender, text) {
 	})
 }
 
+function quickReply(sender){
+    let message = {
+        "text":"Pick a color:",
+        "quick_replies":[
+        {
+            "content_type":"text",
+            "title":"Red",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED",
+            "image_url":"http://petersfantastichats.com/img/red.png"
+        },
+        {
+            "content_type":"text",
+            "title":"Green",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN",
+            "image_url":"http://petersfantastichats.com/img/green.png"
+        }
+        ]
+    }
+    request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: message,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
+
 function demo(sender){
     let message = {
-    "attachment":{
-      "type":"template",
-      "payload":{
-        "template_type":"button",
-        "text":"Hi. About a bill?",
-        "buttons":[
-          {
-            "type":"postback",
-            "title":"Yes",
-            "payload": {
-                "template_type":"button",
-                "text":"Ok, let's talk more",
-                "button":[{
-                    "type":"postback",
-                    "title":"Yes",
-                    "payload": "OH YEAH"
-                }]
-            }
-          },
-          {
-            "type":"postback",
-            "title":"No",
-            "payload":"Ok, bye then"
-          }
-        ]
-      }
+		"attachment":{
+        "type":"template",
+        "payload": {
+            "template_type": "generic",
+            "elements": [{
+                "title": "First card",
+                "subtitle": "Element #1 of an hscroll",                
+                "buttons": [{
+                    "type": "postback",
+                    "title": "web url"
+                }, {
+                    "type": "postback",
+                    "title": "Postback",
+                    "payload": "Payload for first element in a generic bubble",
+                }],
+            }, {
+                "title": "Second card",
+                "subtitle": "Element #2 of an hscroll",
+                "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
+                "buttons": [{
+                    "type": "postback",
+                    "title": "Postback",
+                    "payload": "Payload for second element in a generic bubble",
+                }],
+            }]
+        }
     }
     }
 	request({
