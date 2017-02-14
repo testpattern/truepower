@@ -34,12 +34,17 @@ app.get('/', function (req, res) {
 // 	}
 // })
 
-// function testText(text){
-//     var port = app.get('port');
-//     var req = request("localhost:" + port + "/webhook/", function(response){
-//       // todo: construct a mock message object
-//     })
-// }
+function testText(text){
+    var data = "{ sender: { id: '1235693409813391' },"+
+               "2017-02-14T11:12:51.636367+00:00 app[web.1]:     recipient: { id: '371501613224785' },"+
+               "2017-02-14T11:12:51.636368+00:00 app[web.1]:     timestamp: 1487070771080,"+
+               "2017-02-14T11:12:51.636369+00:00 app[web.1]:     message: { mid: 'mid.1487070771080:2e60d9d730', seq: 423, text: 'button' } }";
+    var port = app.get('port');
+    // todo: add body to post
+    var req = request("localhost:" + port + "/webhook/", function(response){
+      // todo: construct a mock message object
+    })
+}
 
 // to post data
 app.post('/webhook/', function (req, res) {
@@ -55,7 +60,7 @@ app.post('/webhook/', function (req, res) {
 				sendGenericMessage(sender)
 				continue
 			}
-            if (text.toLowerCase() === 'button') {
+            if (text.toLowerCase() === 'demo') {
 				sendButtonMessage(sender);
 				continue
 			}
@@ -104,19 +109,19 @@ function sendButtonMessage(sender) {
             "buttons":[{
                 "type":"postback",
                 "title":"Yes",
-                "postback":{ // Was it different?
+                "payload":{ // Was it different?
                     "template_type":"button",
                     "text": "Was the amount different to what you expected to pay?",
                     "buttons":[{
                         "type":"postback",
                         "title": "Yes",
-                        "postback":{
+                        "payload":{
                             "template_type":"button",
                             "text":"Was your bill higher or lower than you expected?",
                             "buttons":[{
                                 "type":"postback",
                                 "title":"Higher",
-                                "postback":{
+                                "payload":{
                                     "type":"postback",
                                     "title": "It could be that you've changed tariff\n" + 
                                     "Or it's possible that your account has been updated by a rading & this is not yet reflected\n" +
@@ -132,7 +137,7 @@ function sendButtonMessage(sender) {
                             },{
                                 "type":"postback",
                                 "title":"Lower",
-                                "postback":{
+                                "payload":{
                                     "template_type":"button",
                                     "text":"Oh well"
                                 }
@@ -142,7 +147,7 @@ function sendButtonMessage(sender) {
                         {
                             "type":"postback",
                             "title": "Yes",
-                            "postback":{
+                            "payload":{
                                 "template_type":"button",
                                 "text":"Was your bill higher or lower than you expected?"
                             }
