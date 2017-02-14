@@ -79,7 +79,6 @@ app.post('/webhook/', function (req, res) {
 			let text = JSON.stringify(event.postback)
             console.log('postback!')
             console.log(text)
-            console.log(text.message.quick_reply)
 			sendTextMessage(sender, text, token)
 			continue
 		}
