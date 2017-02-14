@@ -34,6 +34,13 @@ app.get('/', function (req, res) {
 // 	}
 // })
 
+// function testText(text){
+//     var port = app.get('port');
+//     var req = request("localhost:" + port + "/webhook/", function(response){
+//       // todo: construct a mock message object
+//     })
+// }
+
 // to post data
 app.post('/webhook/', function (req, res) {
     console.log('webhook!')
@@ -63,7 +70,6 @@ app.post('/webhook/', function (req, res) {
 	res.sendStatus(200)
 })
 
-
 // recommended to inject access tokens as environmental variables, e.g.
 const token = process.env.FB_PAGE_ACCESS_TOKEN
 //const token = process.env.FB_PAGE_ACCESS "<FB_PAGE_ACCESS_TOKEN>"
@@ -88,7 +94,7 @@ function sendTextMessage(sender, text) {
 	})
 }
 
-function sendButtonMessage() {
+function sendButtonMessage(sender) {
     let messageData = {        
         "attachment": {
         "type":"template",
