@@ -48,37 +48,26 @@ app.get('/', function (req, res) {
 // });
 
 app.post('/webhook/', function (req, res) {
-    //let messaging_events = req.body.entry[0].messaging;
-    let data = req.body;
-    data.entry.forEach(function(entry) {
-        var pageID = entry.id;
-        var timeOfEvent = entry.time;
-        // Iterate over each messaging event
-        entry.messaging.forEach(function(event) {
-            if (event.message) {
-            //receivedMessage(event);
-                sendTextMessage(sender, "You said: " + text);
-                sendGenericMessage(sender);
-            } else {
-                console.log("Webhook received unknown event: ", event);
-            }
-        });
-    });
-    // this is the one from the github tutorial
-    // for (let i = 0; i < messaging_events.length; i++) {
-    //     let event = req.body.entry[0].messaging[i]
-    //     let sender = event.sender.id
-    //     if (event.message && event.message.text) {
-    //         let text = event.message.text
-    //         if (text === 'Generic') {
-    //             sendGenericMessage(sender)
-    //             continue
-    //         }
-    //         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-    //     }
-    // }
+    let messaging_events = req.body.entry[0].messaging
+    for (let i = 0; i < messaging_events.length; i++) {
+      let event = req.body.entry[0].messaging[i]
+      let sender = event.sender.id
+      if (event.message && event.message.text) {
+        let text = event.message.text
+        if (text === 'Generic') {
+            sendGenericMessage(sender)
+            continue
+        }
+        sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+      }
+      if (event.postback) {
+        let text = JSON.stringify(event.postback)
+        sendTextMessage(sender, "Postback received: " + text.substring(0, 200), token)
+        continue
+      }
+    }
     res.sendStatus(200)
-})
+});
 
 // Spin up the server
 app.listen(app.get('port'), function() {
