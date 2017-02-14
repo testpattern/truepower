@@ -111,7 +111,15 @@ function demo(sender){
           {
             "type":"postback",
             "title":"Yes",
-            "payload": "Ok, let's talk more"
+            "payload": {
+                "template_type":"button",
+                "text":"Ok, let's talk more",
+                "button":[{
+                    "type":"postback",
+                    "title":"Yes",
+                    "payload": "OH YEAH"
+                }]
+            }
           },
           {
             "type":"postback",
