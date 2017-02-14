@@ -143,58 +143,12 @@ function button(sender) {
             "buttons":[{
                 "type":"postback",
                 "title":"Yes",
-                "payload":{ // Was it different?
-                    "template_type":"button",
-                    "text": "Was the amount different to what you expected to pay?",
-                    "buttons":[{
-                        "type":"postback",
-                        "title": "Yes",
-                        "payload":{
-                            "template_type":"button",
-                            "text":"Was your bill higher or lower than you expected?",
-                            "buttons":[{
-                                "type":"postback",
-                                "title":"Higher",
-                                "payload":{
-                                    "type":"postback",
-                                    "title": "It could be that you've changed tariff\n" + 
-                                    "Or it's possible that your account has been updated by a rading & this is not yet reflected\n" +
-                                    "Which of these do you think is most likely?",
-                                    "buttons":[{
-                                        "type":"postback",
-                                        "title":"Tariff"
-                                    },{
-                                        "type":"postback",
-                                        "title":"Meter reading"
-                                    }]
-                                }
-                            },{
-                                "type":"postback",
-                                "title":"Lower",
-                                "payload":{
-                                    "template_type":"button",
-                                    "text":"Oh well"
-                                }
-                            }]
-                            }
-                        },
-                        {
-                            "type":"postback",
-                            "title": "Yes",
-                            "payload":{
-                                "template_type":"button",
-                                "text":"Was your bill higher or lower than you expected?"
-                            }
-                        }]
-                }
+                "payload":"YES1"
             },
             {
                 "type":"postback",
                 "title":"No",
-                "payload": {
-                    "template_type": "button",
-                    "text": "Ok that's nice"
-                }
+                "payload": "NO1"
             }]
         }
     }
