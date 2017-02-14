@@ -40,14 +40,16 @@ app.post('/webhook/', function (req, res) {
 	let messaging_events = req.body.entry[0].messaging
     console.log(messaging_events)
 	for (let i = 0; i < messaging_events.length; i++) {
-        console.log(i)
-		let event = req.body.entry[0].messaging[i]
+        let event = req.body.entry[0].messaging[i]
 		let sender = event.sender.id
 		if (event.message && event.message.text) {
 			let text = event.message.text
-			if (text === 'Generic') {
-				console.log("welcome to chatbot")
-				//sendGenericMessage(sender)
+			if (text.toLowerCase() === 'generic') {
+				sendGenericMessage(sender)
+				continue
+			}
+            if (text.toLowerCase() === 'button') {
+				sendButtonMessage(sender);
 				continue
 			}
 			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
@@ -83,6 +85,43 @@ function sendTextMessage(sender, text) {
 		} else if (response.body.error) {
 			console.log('Error: ', response.body.error)
 		}
+	})
+}
+
+function sendButtonMessage() {
+    let messageData = {        
+        "attachment": {
+        "type":"template",
+        "payload":{
+            "template_type":"button",
+            "text":"What do you want to do next?",
+            "buttons":[{
+                "type":"web_url",
+                "url":"https://petersapparel.parseapp.com",
+                "title":"Show Website"
+            },
+            {
+                "type":"postback",
+                "title":"Start Chatting",
+                "payload":"USER_DEFINED_PAYLOAD"
+            }]
+        }
+    }
+    }
+    request({
+		url: "https://graph.facebook.com/v2.6/me/messages",
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	    }, function(error, response, body) {
+            if (error) {
+                console.log('Error sending messages: ', error)
+            } else if (response.body.error) {
+                console.log('Error: ', response.body.error)
+            }
 	})
 }
 
