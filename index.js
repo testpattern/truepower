@@ -1,8 +1,3 @@
-//This is still work in progress
-/*
-Please report any bugs to nicomwaks@gmail.com
-i have added console.log on line 48
- */
 'use strict'
 
 const express = require('express')
@@ -22,7 +17,7 @@ console.log('started...')
 
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a secret bot')
+	res.send('hello world i am a chat bot')
 })
 
 // for facebook verification
@@ -59,8 +54,8 @@ app.post('/webhook/', function (req, res) {
             console.log('message')
             console.log(text)
             
-			if (text.toLowerCase() === 'generic') {
-				generic(sender)
+			if (text.toLowerCase() === 'demo') {
+				startDemo(sender)
 				continue
 			}
 
@@ -68,14 +63,16 @@ app.post('/webhook/', function (req, res) {
 				quickReply(sender)
 				continue
 			}
+
+            if (text.toLowerCase() === 'button') {
+				button(sender)
+				continue
+			}
 		}
 		if (event.postback) {
-			//let text = JSON.stringify(event.postback)
-            console.log('postback!')
-            console.log(event.postback)
+            console.log('postback!')            
             console.log(event.postback.payload)
-            //console.log(text.payload)
-			writeText(sender, event.postback.payload, token)
+            nextResponse(sender, event.postback.payload, token)
 			continue
 		}
 	}
@@ -85,7 +82,7 @@ app.post('/webhook/', function (req, res) {
 // recommended to inject access tokens as environmental variables, e.g.
 const token = process.env.FB_PAGE_ACCESS_TOKEN
 
-function writeText(sender, text, token) {
+function nextResponse(sender, text, token) {
 	let messageData = { text:text }
 	
 	request({
@@ -219,7 +216,7 @@ function button(sender) {
 	})
 }
 
-function generic(sender) {
+function startDemo(sender) {
 	let messageData = {
 		"attachment": {
 			"type": "template",
