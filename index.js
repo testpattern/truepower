@@ -59,27 +59,22 @@ app.post('/webhook/', function (req, res) {
             console.log('message')
             console.log(text)
             
-            if (text.message !== undefined && text.message.quick_reply !== undefined) {
-                console.log(text.message)
-                console.log(text.message.quick_reply)
-            }
-
 			if (text.toLowerCase() === 'generic') {
-				sendGenericMessage(sender)
+				generic(sender)
 				continue
 			}
 
-            if (text.toLowerCase() === 'demo') {
+            if (text.toLowerCase() === 'quick reply') {
 				quickReply(sender)
 				continue
 			}
-			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
             console.log('postback!')
             console.log(text)
-			sendTextMessage(sender, text, token)
+            console.log(text.payload)
+			text(sender, text, token)
 			continue
 		}
 	}
@@ -89,7 +84,7 @@ app.post('/webhook/', function (req, res) {
 // recommended to inject access tokens as environmental variables, e.g.
 const token = process.env.FB_PAGE_ACCESS_TOKEN
 
-function sendTextMessage(sender, text) {
+function text(sender, text, token) {
 	let messageData = { text:text }
 	
 	request({
@@ -140,7 +135,7 @@ function quickReply(sender){
 	})
 }
 
-function sendButtonMessage(sender) {
+function button(sender) {
     let messageData = {        
         "attachment": {
         "type":"template",
@@ -223,33 +218,23 @@ function sendButtonMessage(sender) {
 	})
 }
 
-function sendGenericMessage(sender) {
+function generic(sender) {
 	let messageData = {
 		"attachment": {
 			"type": "template",
 			"payload": {
 				"template_type": "generic",
 				"elements": [{
-					"title": "First card",
-					"subtitle": "Element #1 of an hscroll",
-					"image_url": "http://messengerdemo.parseapp.com/img/rift.png",
-					"buttons": [{
-						"type": "web_url",
-						"url": "https://www.messenger.com",
-						"title": "web url"
-					}, {
-						"type": "postback",
-						"title": "Postback",
-						"payload": "Payload for first element in a generic bubble",
-					}],
-				}, {
-					"title": "Second card",
-					"subtitle": "Element #2 of an hscroll",
-					"image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
+					"title": "Hi. What can I help you with today – is your question about a (recent) bill?",
+					"subtitle": "Hi. What can I help you with today – is your question about a (recent) bill?",					
 					"buttons": [{
 						"type": "postback",
 						"title": "Postback",
-						"payload": "Payload for second element in a generic bubble",
+						"payload": "A VALUE to lead to the next thing",
+					},{
+						"type": "postback",
+						"title": "Postback",
+						"payload": "A VALUE to lead to the next thing",
 					}],
 				}]
 			}
