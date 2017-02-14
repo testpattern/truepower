@@ -58,6 +58,7 @@ app.post('/webhook/', function (req, res) {
 			let text = event.message.text
             console.log('message')
             console.log(text)
+            console.log(text.message.quick_reply)
 			if (text.toLowerCase() === 'generic') {
 				sendGenericMessage(sender)
 				continue
