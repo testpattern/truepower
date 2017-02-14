@@ -61,7 +61,8 @@ app.post('/webhook/', function (req, res) {
 				continue
 			}
             if (text.toLowerCase() === 'demo') {
-				sendButtonMessage(sender);
+				//sendButtonMessage(sender);
+                demo(sender);
 				continue
 			}
 			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
@@ -89,6 +90,45 @@ function sendTextMessage(sender, text) {
 		json: {
 			recipient: {id:sender},
 			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
+
+function demo(sender){
+    let message = {
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"button",
+        "text":"Hi. About a bill?",
+        "buttons":[
+          {
+            "type":"postback",
+            "title":"Yes",
+            "payload": "Ok, let's talk more"
+          },
+          {
+            "type":"postback",
+            "title":"No",
+            "payload":"Ok, bye then"
+          }
+        ]
+      }
+    }
+    }
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: message,
 		}
 	}, function(error, response, body) {
 		if (error) {
