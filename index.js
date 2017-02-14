@@ -225,16 +225,15 @@ function generic(sender) {
 			"payload": {
 				"template_type": "generic",
 				"elements": [{
-					"title": "Hi. What can I help you with today – is your question about a (recent) bill?",
 					"subtitle": "Hi. What can I help you with today – is your question about a (recent) bill?",					
 					"buttons": [{
 						"type": "postback",
-						"title": "Postback",
-						"payload": "A VALUE to lead to the next thing",
+						"title": "Yes",
+						"payload": "isBill-YES",
 					},{
 						"type": "postback",
-						"title": "Postback",
-						"payload": "A VALUE to lead to the next thing",
+						"title": "No",
+						"payload": "isBill-NO",
 					}],
 				}]
 			}
