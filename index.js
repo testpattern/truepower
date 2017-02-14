@@ -66,13 +66,14 @@ app.post('/webhook/', function (req, res) {
 				quickReply(sender)
 				continue
 			}
-			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
             console.log('postback!')
             console.log(text)
-			sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+            console.log(text.message.quick_reply)
+			sendTextMessage(sender, text, token)
 			continue
 		}
 	}
