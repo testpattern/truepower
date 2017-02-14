@@ -225,7 +225,7 @@ function generic(sender) {
 			"payload": {
 				"template_type": "generic",
 				"elements": [{
-					"subtitle": "Hi. What can I help you with today – is your question about a (recent) bill?",					
+					"title": "Hi. What can I help you with today – is your question about a (recent) bill?",
 					"buttons": [{
 						"type": "postback",
 						"title": "Yes",
