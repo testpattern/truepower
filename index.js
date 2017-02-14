@@ -18,6 +18,8 @@ app.use(bodyParser.urlencoded({extended: false}))
 // parse application/json
 app.use(bodyParser.json())
 
+console.log('started...')
+
 // index
 app.get('/', function (req, res) {
 	res.send('hello world i am a secret bot')
