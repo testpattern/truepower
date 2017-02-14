@@ -58,11 +58,17 @@ app.post('/webhook/', function (req, res) {
 			let text = event.message.text
             console.log('message')
             console.log(text)
-            console.log(text.message.quick_reply)
+            console.log(text.message)
+
+            if (text.message.quick_reply !== undefined){
+                console.log(text.message)
+            }
+
 			if (text.toLowerCase() === 'generic') {
 				sendGenericMessage(sender)
 				continue
 			}
+            
             if (text.toLowerCase() === 'demo') {
 				quickReply(sender)
 				continue
