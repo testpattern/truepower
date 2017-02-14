@@ -54,22 +54,24 @@ app.post('/webhook/', function (req, res) {
 	for (let i = 0; i < messaging_events.length; i++) {
         let event = req.body.entry[0].messaging[i]
 		let sender = event.sender.id
-		if (event.message && event.message.text) {
+		if (event.message && event.message.text) {            
 			let text = event.message.text
+            console.log('message')
+            console.log(text)
 			if (text.toLowerCase() === 'generic') {
 				sendGenericMessage(sender)
 				continue
 			}
             if (text.toLowerCase() === 'demo') {
-				//sendButtonMessage(sender);
-                //demo(sender);
-                quickReply(sender);
+				quickReply(sender)
 				continue
 			}
 			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
+            console.log('postback!')
+            console.log(text)
 			sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
 			continue
 		}
@@ -102,70 +104,19 @@ function sendTextMessage(sender, text) {
 
 function quickReply(sender){
     let message = {
-        "text":"Pick a color:",
-        "quick_replies":[
-        {
+        "text":"Hi. What can I help you with today - is your question about a (recent) bill?",
+        "quick_replies":[{
             "content_type":"text",
-            "title":"Red",
-            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED",
-            "image_url":"http://petersfantastichats.com/img/red.png"
+            "title":"Yes",
+            "payload":"YesBILL"
         },
         {
             "content_type":"text",
-            "title":"Green",
-            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN",
-            "image_url":"http://petersfantastichats.com/img/green.png"
-        }
-        ]
+            "title":"No",
+            "payload":"NoBILL"
+        }]
     }
     request({
-		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
-		method: 'POST',
-		json: {
-			recipient: {id:sender},
-			message: message,
-		}
-	}, function(error, response, body) {
-		if (error) {
-			console.log('Error sending messages: ', error)
-		} else if (response.body.error) {
-			console.log('Error: ', response.body.error)
-		}
-	})
-}
-
-function demo(sender){
-    let message = {
-		"attachment":{
-        "type":"template",
-        "payload": {
-            "template_type": "generic",
-            "elements": [{
-                "title": "First card",
-                "subtitle": "Element #1 of an hscroll",                
-                "buttons": [{
-                    "type": "postback",
-                    "title": "web url"
-                }, {
-                    "type": "postback",
-                    "title": "Postback",
-                    "payload": "Payload for first element in a generic bubble",
-                }],
-            }, {
-                "title": "Second card",
-                "subtitle": "Element #2 of an hscroll",
-                "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
-                "buttons": [{
-                    "type": "postback",
-                    "title": "Postback",
-                    "payload": "Payload for second element in a generic bubble",
-                }],
-            }]
-        }
-    }
-    }
-	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
 		qs: {access_token:token},
 		method: 'POST',
