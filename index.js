@@ -4,6 +4,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
+var Responder = require('./responder');
+var responder = new Responder();
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -50,21 +52,21 @@ app.post('/webhook/', function (req, res) {
         let event = req.body.entry[0].messaging[i]
 		let sender = event.sender.id
 		if (event.message && event.message.text) {            
-			let text = event.message.text
+			let text = event.message.text.toLowerCase()
             console.log('message')
             console.log(text)
             
-			if (text.toLowerCase() === 'generic') {
+			if (text === 'generic') {
 				generic(sender)
 				continue
 			}
 
-            if (text.toLowerCase() === 'quick reply') {
+            if (text === 'quick reply') {
 				quickReply(sender)
 				continue
 			}
 
-            if (text.toLowerCase() === 'button') {
+            if (text === 'button') {
 				button(sender)
 				continue
 			}
@@ -82,16 +84,22 @@ app.post('/webhook/', function (req, res) {
 // recommended to inject access tokens as environmental variables, e.g.
 const token = process.env.FB_PAGE_ACCESS_TOKEN
 
+let responses = [];
+
 function nextResponse(sender, text, token) {
-	let messageData = { text:text }
+	//let messageData = { text:text }
 	
+    // this will construct the response based on the postback text
+    // something like an array of functions and each one contructs its own message
+    let message = responder[text]();
+    
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
+		qs: { access_token:token },
 		method: 'POST',
 		json: {
 			recipient: {id:sender},
-			message: messageData,
+			message: message,
 		}
 	}, function(error, response, body) {
 		if (error) {
@@ -143,12 +151,12 @@ function button(sender) {
             "buttons":[{
                 "type":"postback",
                 "title":"Yes",
-                "payload":"YES1"
+                "payload":"yes1"
             },
             {
                 "type":"postback",
                 "title":"No",
-                "payload": "NO1"
+                "payload": "no1"
             }]
         }
     }
