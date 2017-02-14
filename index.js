@@ -100,16 +100,62 @@ function sendButtonMessage(sender) {
         "type":"template",
         "payload":{
             "template_type":"button",
-            "text":"What do you want to do next?",
+            "text":"Hi. What can I help you with today - is your question about a (recent) bill?",
             "buttons":[{
-                "type":"web_url",
-                "url":"https://petersapparel.parseapp.com",
-                "title":"Show Website"
+                "type":"postback",
+                "title":"Yes",
+                "postback":{ // Was it different?
+                    "template_type":"button",
+                    "text": "Was the amount different to what you expected to pay?",
+                    "buttons":[{
+                        "type":"postback",
+                        "title": "Yes",
+                        "postback":{
+                            "template_type":"button",
+                            "text":"Was your bill higher or lower than you expected?",
+                            "buttons":[{
+                                "type":"postback",
+                                "title":"Higher",
+                                "postback":{
+                                    "type":"postback",
+                                    "title": "It could be that you've changed tariff\n" + 
+                                    "Or it's possible that your account has been updated by a rading & this is not yet reflected\n" +
+                                    "Which of these do you think is most likely?",
+                                    "buttons":[{
+                                        "type":"postback",
+                                        "title":"Tariff"
+                                    },{
+                                        "type":"postback",
+                                        "title":"Meter reading"
+                                    }]
+                                }
+                            },{
+                                "type":"postback",
+                                "title":"Lower",
+                                "postback":{
+                                    "template_type":"button",
+                                    "text":"Oh well"
+                                }
+                            }]
+                            }
+                        },
+                        {
+                            "type":"postback",
+                            "title": "Yes",
+                            "postback":{
+                                "template_type":"button",
+                                "text":"Was your bill higher or lower than you expected?"
+                            }
+                        }]
+                }
             },
             {
                 "type":"postback",
-                "title":"Start Chatting",
-                "payload":"USER_DEFINED_PAYLOAD"
+                "title":"No",
+                "payload": {
+                    "template_type": "button",
+                    "text": "Ok that's nice"
+                }
             }]
         }
     }
