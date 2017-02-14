@@ -70,11 +70,12 @@ app.post('/webhook/', function (req, res) {
 			}
 		}
 		if (event.postback) {
-			let text = JSON.stringify(event.postback)
+			//let text = JSON.stringify(event.postback)
             console.log('postback!')
-            console.log(text)
-            console.log(text.payload)
-			text(sender, text, token)
+            console.log(event.postback)
+            console.log(event.postback.payload)
+            //console.log(text.payload)
+			writeText(sender, event.postback.payload, token)
 			continue
 		}
 	}
@@ -84,7 +85,7 @@ app.post('/webhook/', function (req, res) {
 // recommended to inject access tokens as environmental variables, e.g.
 const token = process.env.FB_PAGE_ACCESS_TOKEN
 
-function text(sender, text, token) {
+function writeText(sender, text, token) {
 	let messageData = { text:text }
 	
 	request({
