@@ -54,8 +54,8 @@ app.post('/webhook/', function (req, res) {
             console.log('message')
             console.log(text)
             
-			if (text.toLowerCase() === 'demo') {
-				startDemo(sender)
+			if (text.toLowerCase() === 'generic') {
+				generic(sender)
 				continue
 			}
 
@@ -170,7 +170,7 @@ function button(sender) {
 	})
 }
 
-function startDemo(sender) {
+function generic(sender) {
 	let messageData = {
 		"attachment": {
 			"type": "template",
