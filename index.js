@@ -61,6 +61,7 @@ app.post('/webhook/', function (req, res) {
             
             if (text.message !== undefined && text.message.quick_reply !== undefined) {
                 console.log(text.message)
+                console.log(text.message.quick_reply)
             }
 
 			if (text.toLowerCase() === 'generic') {
