@@ -32,6 +32,7 @@ app.get('/', function (req, res) {
 // })
 
 function testResponders() {
+    var text1 = "Welcome-yes";
     var text = "PaymentDifference-yes";
     var name = text.split('-')[0];
     var selection = text.split('-')[1];

@@ -44,7 +44,7 @@ class Welcome {
     }
 }
 
-modeul.exports = Welcome;
+module.exports = Welcome;
 
 class PaymentDifference {
 
