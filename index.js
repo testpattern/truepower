@@ -31,6 +31,16 @@ app.get('/', function (req, res) {
 // 	}
 // })
 
+function testResponders() {
+    var text = "PaymentDifference-yes";
+    var name = text.split('-')[0];
+    var selection = text.split('-')[1];
+    let message = responder.respond(name, selection);
+    console.log(message);
+}
+
+//testResponders();
+
 function testText(text){
     var data = "{ sender: { id: '1235693409813391' },"+
                "2017-02-14T11:12:51.636367+00:00 app[web.1]:     recipient: { id: '371501613224785' },"+
@@ -66,8 +76,8 @@ app.post('/webhook/', function (req, res) {
 				continue
 			}
 
-            if (text === 'button') {
-				button(sender)
+            if (text === 'welcome' || text === "demo") {
+				welcome(sender)
 				continue
 			}
 		}
@@ -87,11 +97,12 @@ const token = process.env.FB_PAGE_ACCESS_TOKEN
 let responses = [];
 
 function nextResponse(sender, text, token) {
-	//let messageData = { text:text }
-	
-    // this will construct the response based on the postback text
+	// this will construct the response based on the postback text
     // something like an array of functions and each one contructs its own message
-    let message = responder[text]();
+    //var text = "PaymentDifference-yes";
+    var name = text.split('-')[0];
+    var selection = text.split('-')[1];
+    let message = responder.respond(name, selection);
     
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -141,7 +152,7 @@ function quickReply(sender){
 	})
 }
 
-function button(sender) {
+function welcome(sender) {
     let messageData = {        
         "attachment": {
         "type":"template",
@@ -151,12 +162,12 @@ function button(sender) {
             "buttons":[{
                 "type":"postback",
                 "title":"Yes",
-                "payload":"yes1"
+                "payload":"PaymentDifference-yes"
             },
             {
                 "type":"postback",
                 "title":"No",
-                "payload": "no1"
+                "payload": "PaymentDifference-no"
             }]
         }
     }

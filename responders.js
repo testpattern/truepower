@@ -1,30 +1,28 @@
-'use strict';
+'use strict'
 
-let PaymentDifference = require('./responders');
-//let paymentDifference = new PaymentDifference();
+class Welcome {
+    intro() {
 
-class Responder {
-
-    constructor() {
-        // add all the responders
-        let paymentDifference = new PaymentDifference();
-        this.responders = [{name: "PaymentDifference", value: paymentDifference}
-        ];
     }
 
-    find(name){
-        var result = this.responders.find(function(item) {
-            return item.name === name;
-        });
-        return result;
+    yes() {
+
     }
 
-    respond(name, selection) {
-        var responder = this.find(name);
-        return responder.value.respond(selection);
+    no() {
+        
+    }
+}
+
+class PaymentDifference {
+
+    //text = "Was the amount different to what you expected to pay?";
+
+    respond(selection) {
+        return this[selection]();
     }
 
-    yes1() {
+    intro() {
         return {
             "attachment": {
             "type":"template",
@@ -34,19 +32,19 @@ class Responder {
                 "buttons":[{
                     "type":"postback",
                     "title":"Yes",
-                    "payload":"yes2"
+                    "payload":"paymentDifference-yes"
                 },
                 {
                     "type":"postback",
                     "title":"No",
-                    "payload": "no2"
+                    "payload": "paymentDifference-no"
                 }]
                 }
             }
         }
     }
     
-    yes2() {
+    yes() {
         return {
             "attachment": {
             "type":"template",
@@ -66,7 +64,10 @@ class Responder {
                 }
             }
         }
+    }    
+    no(){
+
     }
 }
 
-module.exports = Responder;
+module.exports = PaymentDifference;
