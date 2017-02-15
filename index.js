@@ -6,6 +6,8 @@ const request = require('request')
 const app = express()
 var Responder = require('./responder');
 var responder = new Responder();
+// recommended to inject access tokens as environmental variables, e.g.
+const token = process.env.FB_PAGE_ACCESS_TOKEN
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -37,7 +39,7 @@ function testResponders() {
     var name = text.split('-')[0];
     var selection = text.split('-')[1];
     let message = responder.respond(name, selection);
-    let message2 = responder.welcome(1222);
+    let message2 = responder.welcome(1222, token);
     console.log(message);
 }
 
@@ -84,7 +86,7 @@ app.post('/webhook/', function (req, res) {
 			}
 		}
 		if (event.postback) {
-            console.log('postback!')            
+            console.log('postback!')
             console.log(event.postback.payload)
             responder.nextResponse(sender, event.postback.payload, token)
 			continue
@@ -92,9 +94,6 @@ app.post('/webhook/', function (req, res) {
 	}
 	res.sendStatus(200)
 })
-
-// recommended to inject access tokens as environmental variables, e.g.
-const token = process.env.FB_PAGE_ACCESS_TOKEN
 
 // spin spin sugar
 app.listen(app.get('port'), function() {
