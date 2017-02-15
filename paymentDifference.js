@@ -114,20 +114,20 @@ class PaymentDifference {
     higher() {
         return {
             "attachment": {
-            "type":"template",
-            "payload":{
-                "template_type":"button",
-                "text":"It could be that",
-                "buttons":[{
-                    "type":"postback",
-                    "title":"",
-                    "payload":""
-                },
-                {
-                    "type":"postback",
-                    "title":"",
-                    "payload": ""
-                }]
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text":"It could be that",
+                    "buttons":[{
+                        "type":"postback",
+                        "title":"",
+                        "payload":""
+                    },
+                    {
+                        "type":"postback",
+                        "title":"",
+                        "payload": ""
+                    }]
                 }
             }
         }
@@ -136,15 +136,16 @@ class PaymentDifference {
     lower() {
         return {
             "attachment": {
-            "type":"template",
-            "payload":{
-                "template_type":"button",
-                "image_url":"https://thechangreport.com/img/lightning.png",                
-            "buttons":[
-              {
-                "type":"element_share"
-              }]
-            }
+                "type":"template",
+                "payload":{
+                    "template_type":"generic",
+                    "elements":[{
+                        "image_url":"https://thechangreport.com/img/lightning.png",                
+                        "buttons": [{
+                            "type":"element_share"
+                        }]
+                    }]
+                }
             }
         }
     }
