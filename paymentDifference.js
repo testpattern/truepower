@@ -6,7 +6,7 @@ class PaymentDifference {
         return this[selection]();
     }
 
-    aboutBillYes() {
+    intro() {
         return {
             "attachment": {
             "type":"template",
@@ -27,23 +27,6 @@ class PaymentDifference {
                     "type":"postback",
                     "title":"Unsure",
                     "payload": "PaymentDifference-unsure"
-                }]
-                }
-            }
-        }
-    }
-
-    aboutBillNo() {
-        return {
-            "attachment": {
-            "type":"template",
-            "payload":{
-                "template_type":"button",
-                "text":"Is it about a meter reading?",
-                "buttons":[{
-                    "type":"postback",
-                    "title":"Yes",
-                    "payload":"Meter-yes"
                 }]
                 }
             }
@@ -117,7 +100,7 @@ class PaymentDifference {
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text":"It could be that you've changed tariff\n",
+                    "text":"It could be that you've changed tariff\nOr it’s possible that your account has been updated by a reading & this is not yet reflected.\nWhich of these do you think is most likely?",
                     "buttons":[{
                         "type":"postback",
                         "title":"Tariff",

@@ -7,6 +7,8 @@ const app = express()
 
 let Welcome = require('./welcome');
 let PaymentDifference = require('./paymentDifference');
+let Tariff = require('./tariff');
+let MeterReading = require('./meterReading');
 
 class Responder {
 
@@ -14,9 +16,13 @@ class Responder {
         // todo: add all the responders
         let welcome = new Welcome();
         let paymentDifference = new PaymentDifference();
+        let tariff = new Tariff();
+        let meterReading = new MeterReading();        
         this.responders = [
             {name: "Welcome", value: welcome},
-            {name: "PaymentDifference", value: paymentDifference}
+            {name: "PaymentDifference", value: paymentDifference},
+            {name: "Tariff", value: tariff},
+            {name: "MeterReading", value: meterReading}
         ];
     }
 
