@@ -59,7 +59,7 @@ class Responder {
         })
     }
 
-    quickReply(sender){
+    quickReply(sender, token){
         let message = {
             "text":"Hi. What can I help you with today - is your question about a (recent) bill?",
             "quick_replies":[{
@@ -90,7 +90,7 @@ class Responder {
         })
     }
 
-    generic(sender) {
+    generic(sender,token) {
         let messageData = {
             "attachment": {
                 "type": "template",

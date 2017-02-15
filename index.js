@@ -72,12 +72,12 @@ app.post('/webhook/', function (req, res) {
             console.log(text)
             
 			if (text === 'generic') {
-				responder.generic(sender)
+				responder.generic(sender, token)
 				continue
 			}
 
             if (text === 'quick reply') {
-				responder.quickReply(sender)
+				responder.quickReply(sender, token)
 				continue
 			}
 
