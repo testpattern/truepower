@@ -79,7 +79,7 @@ app.post('/webhook/', function (req, res) {
 			}
 
             if (text === 'welcome' || text === "demo") {
-			    responder.welcome(sender)
+			    responder.welcome(sender, token)
 				continue
 			}
 		}

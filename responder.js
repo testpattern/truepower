@@ -26,7 +26,7 @@ class Responder {
         return this.find(name).value.respond(selection);
     }
 
-    welcome(sender) {
+    welcome(sender, token) {
         return this.find("Welcome").value.respond(sender);
     }
 

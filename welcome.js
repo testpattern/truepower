@@ -6,7 +6,7 @@ const request = require('request')
 const app = express()
 
 class Welcome {
-    respond(sender){
+    respond(sender, token){
         let messageData = {        
             "attachment": {
             "type":"template",
