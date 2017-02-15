@@ -22,11 +22,6 @@ class Welcome {
                     "type":"postback",
                     "title":"No",
                     "payload": "PaymentDifference-no"
-                },
-                {
-                    "type":"postback",
-                    "title":"No",
-                    "payload": "PaymentDifference-unsure"
                 }]
                 }
             }
