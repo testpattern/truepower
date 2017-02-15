@@ -7,7 +7,8 @@ const app = express()
 var Responder = require('./responder');
 var responder = new Responder();
 // recommended to inject access tokens as environmental variables, e.g.
-const token = process.env.FB_PAGE_ACCESS_TOKEN || "EAAaXW9BqZA2IBAGQgmZBZAyEeMg5CJHNmlT9Wogej50lytdSICHtdHqqFZBldXwnXutUNZC7fHz4NIy7cOq1C5xIqL9z78A1ab2MuBrlXDEl9MvZADRHJC5U8GkOIdeNNlZBKLuThTbMGBpEcOqGXhrmvAZAsFTw6T2xjHkwg6vOZAAZDZD"
+var token = process.env.FB_PAGE_ACCESS_TOKEN || "EAAaXW9BqZA2IBAGQgmZBZAyEeMg5CJHNmlT9Wogej50lytdSICHtdHqqFZBldXwnXutUNZC7fHz4NIy7cOq1C5xIqL9z78A1ab2MuBrlXDEl9MvZADRHJC5U8GkOIdeNNlZBKLuThTbMGBpEcOqGXhrmvAZAsFTw6T2xjHkwg6vOZAAZDZD"
+console.log(token);
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -43,7 +44,7 @@ function testResponders() {
     console.log(message);
 }
 
-testResponders();
+//testResponders();
 
 function testText(text){
     var data = "{ sender: { id: '1235693409813391' },"+
