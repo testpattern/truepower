@@ -27,7 +27,7 @@ class Responder {
     }
 
     welcome(sender, token) {
-        return this.find("Welcome").value.respond(sender);
+        return this.find("Welcome").value.respond(sender, token);
     }
 
     nextResponse(sender, text, token) {
