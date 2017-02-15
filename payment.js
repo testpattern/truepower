@@ -19,6 +19,32 @@ class Payment {
         }
     }
 
+    amount() {
+        return {
+            "attachment": {
+            "type":"template",
+            "payload":{
+                "template_type":"button",
+                "text":"You can check that you’re paying the right amount each month and see how this is calculated in your online account – go to <a href='#'>Bills & Payments</a>."
+                }
+            }
+        }
+    }
+
+    refund() {
+        return {
+            "attachment": {
+            "type":"template",
+            "payload":{
+                "template_type":"button",
+                "text":"If you pay by Direct Debit, you can adjust your payment using our Direct Debit Tracker tool in your online account.\n"
+                + "It could be that we are processing your credit payment or that it’s on it’s way to you.\n"
+                + "Would you like to speak to a refund specialist?"
+                }
+            }
+        }
+    }
+
     method() {
         return {
             "attachment": {

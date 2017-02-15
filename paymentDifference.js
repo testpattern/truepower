@@ -119,7 +119,7 @@ class PaymentDifference {
                 "buttons":[{
                     "type":"postback",
                     "title":"I want to check I am paying the right amount",
-                    "payload":"Payment-current"
+                    "payload":"Payment-amount"
                 },
                 {
                     "type":"postback",
