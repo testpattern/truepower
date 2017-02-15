@@ -16,12 +16,12 @@ class Welcome {
                 "buttons":[{
                     "type":"postback",
                     "title":"Yes",
-                    "payload":"PaymentDifference-yes"
+                    "payload":"PaymentDifference-aboutBillYes"
                 },
                 {
                     "type":"postback",
                     "title":"No",
-                    "payload": "PaymentDifference-no"
+                    "payload": "PaymentDifference-aboutBillNo"
                 }]
                 }
             }

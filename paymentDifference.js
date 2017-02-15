@@ -6,6 +6,50 @@ class PaymentDifference {
         return this[selection]();
     }
 
+    aboutBillYes() {
+        return {
+            "attachment": {
+            "type":"template",
+            "payload":{
+                "template_type":"button",
+                "text":"Was the amount difference to what you expected to pay?",
+                "buttons":[{
+                    "type":"postback",
+                    "title":"Higher",
+                    "payload":"PaymentDifference-yes"
+                },
+                {
+                    "type":"postback",
+                    "title":"Lower",
+                    "payload": "PaymentDifference-no"
+                },
+                {
+                    "type":"postback",
+                    "title":"Unsure",
+                    "payload": "PaymentDifference-unsure"
+                }]
+                }
+            }
+        }
+    }
+
+    aboutBillNo() {
+        return {
+            "attachment": {
+            "type":"template",
+            "payload":{
+                "template_type":"button",
+                "text":"Is it about a meter reading?",
+                "buttons":[{
+                    "type":"postback",
+                    "title":"Higher",
+                    "payload":"Meter-yes"
+                }]
+                }
+            }
+        }
+    }
+
     yes() {
         return {
             "attachment": {
