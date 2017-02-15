@@ -117,20 +117,25 @@ class PaymentDifference {
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text":"It could be that",
+                    "text":"Was the amount different to what you expected to pay?",
                     "buttons":[{
                         "type":"postback",
-                        "title":"",
-                        "payload":""
+                        "title":"Yes",
+                        "payload":"PaymentDifference-yes"
                     },
                     {
                         "type":"postback",
-                        "title":"",
-                        "payload": ""
+                        "title":"No",
+                        "payload": "PaymentDifference-no"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"Unsure",
+                        "payload": "PaymentDifference-unsure"
                     }]
+                    }
                 }
             }
-        }
     }
 
     lower() {
