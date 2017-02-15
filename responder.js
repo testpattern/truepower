@@ -1,7 +1,7 @@
 'use strict';
 
-let Welcome = require('./responders');
-let PaymentDifference = require('./responders');
+let Welcome = require('./welcome');
+let PaymentDifference = require('./paymentDifference');
 
 class Responder {
 
@@ -27,7 +27,7 @@ class Responder {
     }
 
     welcome(sender) {
-        return this.responders.find("Welcome").value.respond(sender);
+        return this.find("Welcome").value.respond(sender);
     }
 
     nextResponse(sender, text, token) {

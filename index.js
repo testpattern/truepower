@@ -37,10 +37,11 @@ function testResponders() {
     var name = text.split('-')[0];
     var selection = text.split('-')[1];
     let message = responder.respond(name, selection);
+    let message2 = responder.welcome(1222);
     console.log(message);
 }
 
-//testResponders();
+testResponders();
 
 function testText(text){
     var data = "{ sender: { id: '1235693409813391' },"+
