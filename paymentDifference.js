@@ -12,15 +12,15 @@ class PaymentDifference {
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"Was the amount difference to what you expected to pay?",
+                "text":"Was the amount different to what you expected to pay?",
                 "buttons":[{
                     "type":"postback",
-                    "title":"Higher",
+                    "title":"Yes",
                     "payload":"PaymentDifference-yes"
                 },
                 {
                     "type":"postback",
-                    "title":"Lower",
+                    "title":"No",
                     "payload": "PaymentDifference-no"
                 },
                 {
@@ -42,7 +42,7 @@ class PaymentDifference {
                 "text":"Is it about a meter reading?",
                 "buttons":[{
                     "type":"postback",
-                    "title":"Higher",
+                    "title":"Yes",
                     "payload":"Meter-yes"
                 }]
                 }
