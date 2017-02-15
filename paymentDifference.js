@@ -83,49 +83,29 @@ class PaymentDifference {
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"Ok. What can I help you with?",
-                "buttons":[{
-                    "type":"postback",
-                    "title":"I want to update my payment details",
-                    "payload":"Payment-details"
-                },
-                {
-                    "type":"postback",
-                    "title":"I wanted to change how I pay my bill",
-                    "payload": "Payment-method"
-                },
-                {
-                    "type":"postback",
-                    "title":"I haven't received a bill but I think I should have",
-                    "payload": "Payment-bill"
-                },
-                {
-                    "type":"postback",
-                    "title":"I am confused about my payment date",
-                    "payload": "Payment-date"
-                }]
-                }
+                "text":"Ok. What can I help you with?"
             }
+        }
         }
     }
 
     unsure() {
         return {
             "attachment": {
-            "type":"template",
-            "payload":{
-                "template_type":"button",
-                "text":"Ok. What can I help you with?",
-                "buttons":[{
-                    "type":"postback",
-                    "title":"I want to check I am paying the right amount",
-                    "payload":"Payment-amount"
-                },
-                {
-                    "type":"postback",
-                    "title":"I wanted to get a refund for a credit I was owed",
-                    "payload": "Payment-refund"
-                }]
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text":"Ok. What can I help you with?",
+                    "buttons":[{
+                        "type":"postback",
+                        "title":"I want to check I am paying the right amount",
+                        "payload":"Payment-amount"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"I wanted to get a refund for a credit I was owed",
+                        "payload": "Payment-refund"
+                    }]
                 }
             }
         }
