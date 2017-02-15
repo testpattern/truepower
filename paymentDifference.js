@@ -117,25 +117,20 @@ class PaymentDifference {
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text":"Was the amount different to what you expected to pay?",
+                    "text":"It could be that you've changed tariff\n",
                     "buttons":[{
                         "type":"postback",
-                        "title":"Yes",
-                        "payload":"PaymentDifference-yes"
+                        "title":"Tariff",
+                        "payload":"Tariff-intro"
                     },
                     {
                         "type":"postback",
-                        "title":"No",
-                        "payload": "PaymentDifference-no"
-                    },
-                    {
-                        "type":"postback",
-                        "title":"Unsure",
-                        "payload": "PaymentDifference-unsure"
+                        "title":"Meter read",
+                        "payload": "MeterReading-intro"
                     }]
-                    }
                 }
             }
+        }
     }
 
     lower() {
