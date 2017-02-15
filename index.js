@@ -67,24 +67,24 @@ app.post('/webhook/', function (req, res) {
             console.log(text)
             
 			if (text === 'generic') {
-				generic(sender)
+				responder.generic(sender)
 				continue
 			}
 
             if (text === 'quick reply') {
-				quickReply(sender)
+				responder.quickReply(sender)
 				continue
 			}
 
             if (text === 'welcome' || text === "demo") {
-				welcome(sender)
+			    responder.welcome(sender)
 				continue
 			}
 		}
 		if (event.postback) {
             console.log('postback!')            
             console.log(event.postback.payload)
-            nextResponse(sender, event.postback.payload, token)
+            responder.nextResponse(sender, event.postback.payload, token)
 			continue
 		}
 	}
@@ -93,139 +93,6 @@ app.post('/webhook/', function (req, res) {
 
 // recommended to inject access tokens as environmental variables, e.g.
 const token = process.env.FB_PAGE_ACCESS_TOKEN
-
-let responses = [];
-
-function nextResponse(sender, text, token) {
-	// this will construct the response based on the postback text
-    // something like an array of functions and each one contructs its own message
-    //var text = "PaymentDifference-yes";
-    var name = text.split('-')[0];
-    var selection = text.split('-')[1];
-    let message = responder.respond(name, selection);
-    
-	request({
-		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: { access_token:token },
-		method: 'POST',
-		json: {
-			recipient: {id:sender},
-			message: message,
-		}
-	}, function(error, response, body) {
-		if (error) {
-			console.log('Error sending messages: ', error)
-		} else if (response.body.error) {
-			console.log('Error: ', response.body.error)
-		}
-	})
-}
-
-function quickReply(sender){
-    let message = {
-        "text":"Hi. What can I help you with today - is your question about a (recent) bill?",
-        "quick_replies":[{
-            "content_type":"text",
-            "title":"Yes",
-            "payload":"YesBILL"
-        },
-        {
-            "content_type":"text",
-            "title":"No",
-            "payload":"NoBILL"
-        }]
-    }
-    request({
-		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
-		method: 'POST',
-		json: {
-			recipient: {id:sender},
-			message: message,
-		}
-	}, function(error, response, body) {
-		if (error) {
-			console.log('Error sending messages: ', error)
-		} else if (response.body.error) {
-			console.log('Error: ', response.body.error)
-		}
-	})
-}
-
-function welcome(sender) {
-    let messageData = {        
-        "attachment": {
-        "type":"template",
-        "payload":{
-            "template_type":"button",
-            "text":"Hi. What can I help you with today - is your question about a (recent) bill?",
-            "buttons":[{
-                "type":"postback",
-                "title":"Yes",
-                "payload":"PaymentDifference-yes"
-            },
-            {
-                "type":"postback",
-                "title":"No",
-                "payload": "PaymentDifference-no"
-            }]
-        }
-    }
-    }
-    request({
-		url: "https://graph.facebook.com/v2.6/me/messages",
-		qs: {access_token:token},
-		method: 'POST',
-		json: {
-			recipient: {id:sender},
-			message: messageData,
-		}
-	    }, function(error, response, body) {
-            if (error) {
-                console.log('Error sending messages: ', error)
-            } else if (response.body.error) {
-                console.log('Error: ', response.body.error)
-            }
-	})
-}
-
-function generic(sender) {
-	let messageData = {
-		"attachment": {
-			"type": "template",
-			"payload": {
-				"template_type": "generic",
-				"elements": [{
-					"title": "Hi. What can I help you with today – is your question about a (recent) bill?",
-					"buttons": [{
-						"type": "postback",
-						"title": "Yes",
-						"payload": "isBill-YES",
-					},{
-						"type": "postback",
-						"title": "No",
-						"payload": "isBill-NO",
-					}],
-				}]
-			}
-		}
-	}
-	request({
-		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
-		method: 'POST',
-		json: {
-			recipient: {id:sender},
-			message: messageData,
-		}
-	}, function(error, response, body) {
-		if (error) {
-			console.log('Error sending messages: ', error)
-		} else if (response.body.error) {
-			console.log('Error: ', response.body.error)
-		}
-	})
-}
 
 // spin spin sugar
 app.listen(app.get('port'), function() {

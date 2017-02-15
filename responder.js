@@ -1,14 +1,17 @@
 'use strict';
 
+let Welcome = require('./responders');
 let PaymentDifference = require('./responders');
-//let paymentDifference = new PaymentDifference();
 
 class Responder {
 
     constructor() {
-        // add all the responders
+        // todo: add all the responders
+        let welcome = new Welcome();
         let paymentDifference = new PaymentDifference();
-        this.responders = [{name: "PaymentDifference", value: paymentDifference}
+        this.responders = [
+            {name: "Welcome", value: welcome},
+            {name: "PaymentDifference", value: paymentDifference}
         ];
     }
 
@@ -20,52 +23,104 @@ class Responder {
     }
 
     respond(name, selection) {
-        var responder = this.find(name);
-        return responder.value.respond(selection);
+        return this.find(name).value.respond(selection);
     }
 
-    yes1() {
-        return {
-            "attachment": {
-            "type":"template",
-            "payload":{
-                "template_type":"button",
-                "text":"Was the amount different to what you expected to pay?",
-                "buttons":[{
-                    "type":"postback",
-                    "title":"Yes",
-                    "payload":"yes2"
-                },
-                {
-                    "type":"postback",
-                    "title":"No",
-                    "payload": "no2"
-                }]
-                }
-            }
-        }
+    welcome(sender) {
+        return this.responders.find("Welcome").value.respond(sender);
     }
-    
-    yes2() {
-        return {
+
+    nextResponse(sender, text, token) {
+        // this will construct the response based on the postback text
+        // something like an array of functions and each one contructs its own message
+        var name = text.split('-')[0];
+        var selection = text.split('-')[1];
+        let message = this.respond(name, selection);
+        
+        request({
+            url: 'https://graph.facebook.com/v2.6/me/messages',
+            qs: { access_token:token },
+            method: 'POST',
+            json: {
+                recipient: {id:sender},
+                message: message,
+            }
+        }, function(error, response, body) {
+            if (error) {
+                console.log('Error sending messages: ', error)
+            } else if (response.body.error) {
+                console.log('Error: ', response.body.error)
+            }
+        })
+    }
+
+    quickReply(sender){
+        let message = {
+            "text":"Hi. What can I help you with today - is your question about a (recent) bill?",
+            "quick_replies":[{
+                "content_type":"text",
+                "title":"Yes",
+                "payload":"YesBILL"
+            },
+            {
+                "content_type":"text",
+                "title":"No",
+                "payload":"NoBILL"
+            }]
+        }
+        request({
+            url: 'https://graph.facebook.com/v2.6/me/messages',
+            qs: {access_token:token},
+            method: 'POST',
+            json: {
+                recipient: {id:sender},
+                message: message,
+            }
+        }, function(error, response, body) {
+            if (error) {
+                console.log('Error sending messages: ', error)
+            } else if (response.body.error) {
+                console.log('Error: ', response.body.error)
+            }
+        })
+    }
+
+    generic(sender) {
+        let messageData = {
             "attachment": {
-            "type":"template",
-            "payload":{
-                "template_type":"button",
-                "text":"Was your bill higher or lower than you expected?",
-                "buttons":[{
-                    "type":"postback",
-                    "title":"Higher",
-                    "payload":"yes3"
-                },
-                {
-                    "type":"postback",
-                    "title":"Lower",
-                    "payload": "no3"
-                }]
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": [{
+                        "title": "Hi. What can I help you with today – is your question about a (recent) bill?",
+                        "buttons": [{
+                            "type": "postback",
+                            "title": "Yes",
+                            "payload": "isBill-YES",
+                        },{
+                            "type": "postback",
+                            "title": "No",
+                            "payload": "isBill-NO",
+                        }],
+                    }]
                 }
             }
         }
+        request({
+            url: 'https://graph.facebook.com/v2.6/me/messages',
+            qs: {access_token:token},
+            method: 'POST',
+            json: {
+                recipient: {id:sender},
+                message: messageData,
+            }
+        }, function(error, response, body) {
+            if (error) {
+                console.log('Error sending messages: ', error)
+            } else if (response.body.error) {
+                console.log('Error: ', response.body.error)
+            }
+        })
     }
 }
 
