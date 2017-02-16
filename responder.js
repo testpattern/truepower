@@ -5,48 +5,51 @@ const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
 
-let Welcome = require('./welcome');
-let PaymentDifference = require('./paymentDifference');
-let Tariff = require('./tariff');
-let MeterReading = require('./meterReading');
-
 class Responder {
 
     constructor() {
-        // todo: add all the responders
-        let welcome = new Welcome();
-        let paymentDifference = new PaymentDifference();
-        let tariff = new Tariff();
-        let meterReading = new MeterReading();        
-        this.responders = [
-            {name: "Welcome", value: welcome},
-            {name: "PaymentDifference", value: paymentDifference},
-            {name: "Tariff", value: tariff},
-            {name: "MeterReading", value: meterReading}
-        ];
+        this.responses = require('./responses.json');
+        console.log(this.responses);
     }
+    
+    respond(sender, token, payload) {
+        var parent = payload.split('.')[0];
+        var child = payload.split('.')[0];
 
-    find(name){
-        var result = this.responders.find(function(item) {
-            return item.name === name;
+        var result = this.responses.find(function(item) {
+            return item.section.toLowerCase() === parent.toLowerCase();
+        });        
+        var option = result.items.find(function(item) {
+            return item.name.toLowerCase() === child.toLowerCase();
         });
-        return result;
+
+        sendMessage(sender, token, option.message);
     }
 
-    respond(name, selection) {
-        return this.find(name).value.respond(selection);
-    }
-
-    welcome(sender, token) {
-        return this.find("Welcome").value.respond(sender, token);
+    sendMessage(sender, token, message) {
+        request({
+            url: 'https://graph.facebook.com/v2.6/me/messages',
+            qs: { access_token:token },
+            method: 'POST',
+            json: {
+                recipient: {id:sender},
+                message: message,
+            }
+        }, function(error, response, body) {
+            if (error) {
+                console.log('Error sending messages: ', error)
+            } else if (response.body.error) {
+                console.log('Error: ', response.body.error)
+            }
+        })
     }
 
     nextResponse(sender, text, token) {
         // this will construct the response based on the postback text
         // something like an array of functions and each one contructs its own message
-        var name = text.split('-')[0];
-        var selection = text.split('-')[1];
-        let message = this.respond(name, selection);
+        var section = text.split('.')[0];
+        var name = text.split('.')[1];
+        let message = this.respond(section, name);
         
         request({
             url: 'https://graph.facebook.com/v2.6/me/messages',

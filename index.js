@@ -7,24 +7,17 @@ const app = express()
 var Responder = require('./responder');
 var responder = new Responder();
 // recommended to inject access tokens as environmental variables, e.g.
-const token = process.env.FB_PAGE_ACCESS_TOKEN;// || "EAAaXW9BqZA2IBAGQgmZBZAyEeMg5CJHNmlT9Wogej50lytdSICHtdHqqFZBldXwnXutUNZC7fHz4NIy7cOq1C5xIqL9z78A1ab2MuBrlXDEl9MvZADRHJC5U8GkOIdeNNlZBKLuThTbMGBpEcOqGXhrmvAZAsFTw6T2xjHkwg6vOZAAZDZD"
-console.log(token);
-
+const token = process.env.FB_PAGE_ACCESS_TOKEN;
 app.set('port', (process.env.PORT || 5000))
-
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}))
-
 // parse application/json
 app.use(bodyParser.json())
-
 console.log('started...')
-
 // index
 app.get('/', function (req, res) {
 	res.send('hello world i am a chat bot')
 })
-
 // for facebook verification
 // app.get('/webhook/', function (req, res) {
 // 	if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
@@ -33,19 +26,15 @@ app.get('/', function (req, res) {
 // 		res.send('Error, wrong token')
 // 	}
 // })
-
 function testResponders() {
-    var text1 = "Welcome-yes";
-    var text = "PaymentDifference-yes";
-    var name = text.split('-')[0];
-    var selection = text.split('-')[1];
-    let message = responder.respond(name, selection);
-    let message2 = responder.welcome('371501613224785', token);
+    var text = "Welcome.Intro";
+    var section = text.split('.')[0];
+    var option = text.split('.')[1];
+    let message = responder.respond(section, option);
+    //let message2 = responder.welcome('371501613224785', token);
     console.log(message);
 }
-
 //testResponders();
-
 function testText(text){
     var data = "{ sender: { id: '1235693409813391' },"+
                "2017-02-14T11:12:51.636367+00:00 app[web.1]:     recipient: { id: '371501613224785' },"+
@@ -57,7 +46,6 @@ function testText(text){
       // todo: construct a mock message object
     })
 }
-
 // to post data
 app.post('/webhook/', function (req, res) {
     console.log('webhook!')
@@ -82,21 +70,23 @@ app.post('/webhook/', function (req, res) {
 			}
 
             if (text === 'welcome' || text === "demo") {
-			    responder.welcome(sender, token)
+			    responder.respond(sender, token, "Welcome.Intro")
 				continue
 			}
 		}
 		if (event.postback) {
             console.log('postback!')
             console.log(event.postback.payload)
-            responder.nextResponse(sender, event.postback.payload, token)
+            responder.respond(sender, token, event.postback.payload)
 			continue
 		}
+        if (event.quick_reply) {
+            responder.respond(sender, token, event.quick_reply.payload)
+        }
 	}
 	res.sendStatus(200)
 })
 
-// spin spin sugar
 app.listen(app.get('port'), function() {
 	console.log('running on port', app.get('port'))
 })

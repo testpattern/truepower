@@ -1,0 +1,378 @@
+[
+{
+    "section":"Welcome",
+    "items" : [{
+      "name": "Intro",
+      "message": {
+        "attachment":{
+            "type":"template",
+            "payload":{
+                "template_type":"generic",
+                "elements":[{
+                    "title":"Welcome to TruePower.",
+                    "subtitle": "Hi. What can I help you with today – is your question about a (recent) bill?",
+                    "default_action": {
+                        "type": "web_url",
+                        "url": "https://peterssendreceiveapp.ngrok.io/view?item=103",
+                        "messenger_extensions": true,
+                        "webview_height_ratio": "tall",
+                        "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                    },
+                    "buttons":[{
+                        "type":"postback",
+                        "title":"My Account",
+                        "payload":"Account.Intro"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"Payment",
+                        "payload":"Payments.Intro"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"Bills",
+                        "payload":"Billing.Intro"
+                    }]
+                }]
+            }
+        }
+    }
+}]
+},
+{
+    "section":"Billing",
+    "items" : [{
+        "name": "Intro",
+        "message" : {
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text": "How was your bill different to what you expected?",
+                    "buttons":[{
+                        "type":"postback",
+                        "title":"Higher",
+                        "payload":"Billing.Higher"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"Lower",
+                        "payload":"Billing.Lower"
+                    }]
+                }
+            }
+        }
+    },
+    {
+        "name": "TariffIntro",
+        "message" :{
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text": "It could be that you’ve changed tariff\nOr it’s possible that your account has been updated by a reading & this is not yet reflected.\nWhich of these do you think is most likely?",
+                    "buttons":[{
+                        "type":"postback",
+                        "title":"Tariff",
+                        "payload":"Billing.TariffIntro"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"Meter read",
+                        "payload":"Account.MeterIntro"
+                    }]
+                }
+            }
+        }
+    },
+    {
+        "name": "TariffAccount",
+        "message" : {
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text": "It might be that you’ve gone on to our standard tariff. Have a look on your bill. It will say here:{IMAGE]",
+                    "buttons":[{
+                        "type":"postback",
+                        "title":"I have another question",
+                        "payload":"Billing.Conclusion"
+                    },{
+                        "type":"postback",
+                        "title":"Check tariff",
+                        "payload":"BillingTariff"
+                    },{
+                        "type":"postback",
+                        "title":"Meter read",
+                        "payload":"Account.MeterIntro"
+                    }]
+                }
+            }
+        }
+    },
+    {
+        "name": "Conclusion",
+        "message":{
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"generic",
+                    "text": "It might be that you’ve gone on to our standard tariff. Have a look on your bill. It will say here:{IMAGE]... TODO CONCLUSION"
+                }
+            }
+        }
+    }]
+},
+{
+    "section":"Account",
+    "items" : [{
+        "name": "Intro",
+        "message" : {
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text": "Manage your account",
+                    "buttons":[{
+                        "type":"postback",
+                        "title":"Give a meter reading",
+                        "payload":"Account.MeterReadingSubmit"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"Change my details",
+                        "payload":"Account.Details"
+                    }]
+                }
+            }
+        }
+    },
+    {
+        "name": "Details",
+        "message" :{
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text": "You can set your details in your online account.[LINK + IMAGE]",
+                    "buttons":[{
+                        "type":"postback",
+                        "title":"Go there now",
+                        "payload":"Account.DetailsConclusion"
+                    }]
+                }
+            }
+        }
+    },
+    {
+        "name": "DetailsConclusion",
+        "message" :{
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text": "[LINK + IMAGE]"
+                }
+            }
+        }
+    },
+    {
+        "name": "MeterReadingInfo",
+        "message" : {
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text": "We use a combination of your readings and estimates to calculate your bill. Keep bills accurate by sending monthly readings.\nI gave a reading",
+                    "buttons":[{
+                        "type":"postback",
+                        "title":"In the last 5 days",
+                        "payload":"Account.MeterReadingConclusion"
+                    },{
+                        "type":"postback",
+                        "title":"In the last month",
+                        "payload":"Account.MeterReadingSubmit"
+                    },{
+                        "type":"postback",
+                        "title":"Even longer",
+                        "payload":"Account.MeterReadingSubmit"
+                    }]
+                }
+            }
+        }
+    },
+    {
+        "name": "MeterReadingSubmit",
+        "message" : {
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text":"We use a combination of your readings and estimates to calculate your bill. Keep bills accurate by sending monthly readings",
+                    "buttons":[{
+                        "type":"postback",
+                        "title":"Submit online (TODO)",
+                        "payload":""
+                    },{
+                        "type":"postback",
+                        "title":"Submit in app (TODO)",
+                        "payload":""
+                    },{
+                        "type":"postback",
+                        "title":"Remind me (TODO)",
+                        "payload":""
+                    }]
+                }
+            }
+        }
+    },
+    {
+        "name": "MeterReadingConclusion",
+        "message" : {
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text":"Ok. It can take 5 days for your account to be updated.\nWe use a combination of your readings and estimates to calculate your bill.\nYou will receive a notification when the update has been received.\nYour next bill will be adjusted to reflect your latest reading[TODO END]"
+                }
+            }
+        }
+    }]
+},
+{
+    "section":"Payments",
+    "items":[{
+        "name" : "Intro",
+        "message": {
+            "attachment":{
+                "type": "template",
+                "payload":{
+                    "template_type":"button",
+                    "text": "Monitor how and what you pay",
+                    "buttons":[{
+                        "type":"postback",
+                        "title":"Change payment method",
+                        "payload":"Payments.Manage"
+                    },{
+                        "type":"postback",
+                        "title":"Change my bank details",
+                        "payload":""
+                    },{
+                        "type":"postback",
+                        "title":"Track my Direct Debit",
+                        "payload":""
+                    }]
+                }
+            }
+        }
+    },
+    {
+        "name" : "Manage",
+        "message": {
+            "attachment":{
+                "type": "template",
+                "payload":{
+                    "template_type":"button",
+                    "text": "You can set your payment details in your online account. Go to Account Summary and click ‘Change your bank details’\nWhat would you like to change?",
+                    "buttons":[{
+                        "type":"postback",
+                        "title":"Direct Debit amount",
+                        "payload":"Payments.Conclusion"
+                    },{
+                        "type":"postback",
+                        "title":"Direct Debit date",
+                        "payload":"Payments.Conclusion"
+                    },{
+                        "type":"postback",
+                        "title":"Other",
+                        "payload":"Payments.Conclusion"
+                    }]
+                }
+            }
+        }
+    },
+    {
+        "name":"Conclusion",
+        "message":{
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text": "NPower online account [TODO link + image]"
+                }
+            }
+        }
+    }]
+},
+{
+    "section":"General",
+    "items":[{
+        "name" : "Intro",
+        "message": {
+            "attachment":{
+                "type": "template",
+                "payload":{
+                    "template_type":"button",
+                    "text": "Ask us a question",
+                    "buttons":[{
+                        "type":"postback",
+                        "title":"I have another question",
+                        "payload":"General.Question"
+                    }]
+                }
+            }
+        }
+    },
+    {
+        "name":"Question",
+        "message":{
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text": "Tell us how we can help and we’ll get back to you shortly.\nRemember to include your account number and name.\nYou should be the account holder, otherwise we need permission to discuss your needs.\nNPower online account [TODO text input]"
+                }
+            }
+        }
+    }]
+},
+{
+    "section" : "Global",
+    "items":[{
+        "name":"Conclusion",
+        "message":{
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text": "Thank you. Please tell us how you think we're doing.",
+                     "buttons":[{
+                        "type":"postback",
+                        "title":"Great!",
+                        "payload":"General.Complete"
+                    },{
+                        "type":"postback",
+                        "title":"Ok",
+                        "payload":"General.Complete"
+                    },{
+                        "type":"postback",
+                        "title":"Needs improvement",
+                        "payload":"General.Complete"
+                    }]
+                }
+            }
+        }
+    },{
+         "name":"Complete",
+        "message":{
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text": "Thanks for your feedback."
+                }
+            }
+        }
+    }]
+}
+]
