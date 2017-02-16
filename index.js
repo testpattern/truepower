@@ -73,13 +73,14 @@ app.post('/webhook/', function (req, res) {
 
             if (text === "hi" || text === "hello") {
                 // wrap all interactions?
-                firstname = responder.getUserFirstname(sender, token);
-                var intro = { "text" : `Hi ${firstname}. What can I help you with today?` };
-                responder.sendMessage(sender, token, intro);
-                setTimeout(function() {
-                    var term = text === "hi" ? "Welcome.Intro" : "Welcome.List";
-                    responder.respond(sender, token, term);
-                }, 1500);
+                responder.getUserFirstname(sender, token, function(firstname){
+                    var intro = { "text" : `Hi ${firstname}. What can I help you with today?` };
+                    responder.sendMessage(sender, token, intro);
+                    setTimeout(function() {
+                        var term = text === "hi" ? "Welcome.Intro" : "Welcome.List";
+                        responder.respond(sender, token, term);
+                    }, 1500);
+                });
             }
 
             if (text === 'welcome' || text === "demo") {

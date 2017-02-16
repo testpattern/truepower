@@ -26,13 +26,13 @@ class Responder {
         this.sendMessage(sender, token, option.message);
     }
 
-    getUserFirstname(sender, token) {
+    getUserFirstname(sender, token, callback) {
         request({
             url: `https://graph.facebook.com/v2.6/${sender}?fields=first_name&access_token=${token}`,
             method: 'GET'
         }, function(error, response, body) {
             if (body.length) {
-                return JSON.parse(body).first_name;                
+                callback(JSON.parse(body).first_name); 
             }
             if (error) {
                 console.log('Error sending messages: ', error)
