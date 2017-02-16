@@ -8,6 +8,7 @@ var Responder = require('./responder');
 var responder = new Responder();
 // recommended to inject access tokens as environmental variables, e.g.
 const token = process.env.FB_PAGE_ACCESS_TOKEN;
+var firstname = "user";
 app.set('port', (process.env.PORT || 5000))
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}))
@@ -57,10 +58,29 @@ app.post('/webhook/', function (req, res) {
 				responder.generic(sender, token)
 				continue
 			}
+            
             if (text === 'quick reply') {
 				responder.quickReply(sender, token)
 				continue
 			}
+
+            if (text === "hi" || text === "hello") {
+                // wrap all interactions?
+                request({
+                    url: "https://graph.facebook.com/v2.6/" + sender + "?fields=first_name&access_token=" + token,
+                    method: 'GET'
+                }, function(error, response, body){
+                    console.log('user name');
+                    console.log(response);
+                    console.log(body);
+                    if (response.first_name) {
+                        firstname = response.first_name;
+                        var intro = "Hi " + firstname + ". What can I help you with today?";
+                        responder.sendMessage(sender, token, intro);
+                    }
+                });
+            }
+
             if (text === 'welcome' || text === "demo") {
 			    responder.respond(sender, token, "Welcome.Intro")
 				continue
