@@ -289,8 +289,18 @@
             "attachment": {
                 "type":"template",
                 "payload":{
-                    "template_type":"button",
-                    "text": "NPower online account [TODO link + image]"
+                    "template_type":"generic",
+                    "elements":[{
+                        "title": "NPower online account [TODO link + image]",
+                        "subtitle": "[TODO link + image]",
+                        "image_url": "https://placehold.it/350x150"
+                    },{
+                        "buttons":{
+                            "type":"web_url",
+                            "url": "https://www.npower.com/",
+                            "title": "NPower online account"
+                        }
+                    }]
                 }
             }
         }
