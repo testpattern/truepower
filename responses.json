@@ -9,22 +9,45 @@
                 "template_type":"generic",
                 "elements":[{
                     "title":"Welcome to TruePower.",
-                    "subtitle": "Hi. What can I help you with today – is your question about a (recent) bill?",                    
+                    "subtitle": "Hi. What can I help you with today – is your question about a (recent) bill?",
+                    "image_url": "http://placehold.it/350x150",
                     "buttons":[
                     {
                         "type":"postback",
                         "title":"Bills",
                         "payload":"Billing.Intro"
-                    },
+                    }]
+                },
+                {
+                    "title":"Welcome to TruePower.",
+                    "subtitle": "Hi. What can I help you with today – is your question about a (recent) bill?",
+                    "image_url": "http://placehold.it/350x150",
+                    "buttons":[
                     {
                         "type":"postback",
                         "title":"My Account",
                         "payload":"Account.Intro"
-                    },
+                    }]
+                },
+                {
+                    "title":"Welcome to TruePower.",
+                    "subtitle": "Hi. What can I help you with today – is your question about a (recent) bill?",
+                    "image_url": "http://placehold.it/350x150",
+                    "buttons":[
                     {
                         "type":"postback",
                         "title":"Payment",
                         "payload":"Payments.Intro"
+                    }]
+                },{
+                    "title":"Welcome to TruePower.",
+                    "subtitle": "Hi. What can I help you with today – is your question about a (recent) bill?",
+                    "image_url": "http://placehold.it/350x150",
+                    "buttons":[
+                        {
+                        "type":"postback",
+                        "title":"Payment",
+                        "payload":"General.Intro"
                     }]
                 }]
             }
