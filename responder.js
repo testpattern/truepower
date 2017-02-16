@@ -15,18 +15,18 @@ class Responder {
         console.log(payload);
 
         var parent = payload.split('.')[0];
-        var child = payload.split('.')[0];
+        var child = payload.split('.')[1];
 
         console.log(parent, child);
 
         var result = this.responses.find(function(item) {
-            return item.section.toLowerCase() === parent.toLowerCase();
+            return item.section === parent;
         });
 
         console.log(result);
 
         var option = result.items.find(function(item) {
-            return item.name.toLowerCase() === child.toLowerCase();
+            return item.name === child;
         });
 
         console.log(option);

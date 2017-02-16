@@ -57,18 +57,15 @@ app.post('/webhook/', function (req, res) {
 		if (event.message && event.message.text) {            
 			let text = event.message.text.toLowerCase()
             console.log('message')
-            console.log(text)
-            
+            console.log(text)            
 			if (text === 'generic') {
 				responder.generic(sender, token)
 				continue
 			}
-
             if (text === 'quick reply') {
 				responder.quickReply(sender, token)
 				continue
 			}
-
             if (text === 'welcome' || text === "demo") {
 			    responder.respond(sender, token, "Welcome.Intro")
 				continue
