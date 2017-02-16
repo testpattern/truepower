@@ -289,18 +289,20 @@
             "attachment":{
                 "type":"template",
                 "payload":{
-                    "template_type":"generic",
-                    "elements":[{
-                        "title": "NPower online account",
-                        "image_url": "https://placehold.it/350x150",
-                        "subtitle": "Go there now",
-                        "default_action": {
-                            "type": "web_url",
-                            "url": "https://www.npower.com",
-                            "webview_height_ratio": "tall",
-                            "fallback_url": "https://www.npower.com/"
-                        }
-                    }]
+                    "template_type":"button",
+                    "text":"Npower online account",
+                    "buttons":[
+                    {
+                        "type":"web_url",
+                        "url":"https://www.npower.com/",
+                        "title":"Show Website"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"Start Chatting",
+                        "payload":"USER_DEFINED_PAYLOAD"
+                    }
+                    ]
                 }
             }
         }
