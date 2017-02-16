@@ -51,18 +51,6 @@ function testIntro(){
     });
 }
 //testIntro()
-
-function testText(text){
-    var data = "{ sender: { id: '1235693409813391' },"+
-               "2017-02-14T11:12:51.636367+00:00 app[web.1]:     recipient: { id: '371501613224785' },"+
-               "2017-02-14T11:12:51.636368+00:00 app[web.1]:     timestamp: 1487070771080,"+
-               "2017-02-14T11:12:51.636369+00:00 app[web.1]:     message: { mid: 'mid.1487070771080:2e60d9d730', seq: 423, text: 'button' } }";
-    var port = app.get('port');
-    // todo: add body to post
-    var req = request("localhost:" + port + "/webhook/", function(response){
-      // todo: construct a mock message object
-    })
-}
 // to post data
 app.post('/webhook/', function (req, res) {
     console.log('webhook!')
@@ -85,19 +73,13 @@ app.post('/webhook/', function (req, res) {
 
             if (text === "hi" || text === "hello") {
                 // wrap all interactions?
-                request({
-                    url: "https://graph.facebook.com/v2.6/" + sender + "?fields=first_name&access_token=" + token,
-                    method: 'GET'
-                }, function(error, response, body){
-                    console.log('user name');
-                    if (body.first_name) {
-                        firstname = body.first_name;
-                        var intro = { 
-                            "text" : "Hi " + firstname + ". What can I help you with today?" 
-                        }
-                        responder.sendMessage(sender, token, intro);
-                    }
-                });
+                firstname = responder.getUserFirstname(sender, token);
+                var intro = { "text" : `Hi ${firstname}. What can I help you with today?` };
+                responder.sendMessage(sender, token, intro);
+                setTimeout(function() {
+                    var term = text === "hi" ? "Welcome.Intro" : "Welcome.List";
+                    responder.respond(sender, token, term);
+                }, 1500);
             }
 
             if (text === 'welcome' || text === "demo") {

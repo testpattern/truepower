@@ -26,6 +26,22 @@ class Responder {
         this.sendMessage(sender, token, option.message);
     }
 
+    getUserFirstname(sender, token) {
+        request({
+            url: `https://graph.facebook.com/v2.6/${sender}?fields=first_name&access_token=${token}`,
+            method: 'GET'
+        }, function(error, response, body) {
+            if (body.first_name) {
+                return JSON.parse(body).first_name;                
+            }
+            if (error) {
+                console.log('Error sending messages: ', error)
+            } else if (response.body.error) {
+                console.log('Error: ', response.body.error)
+            }
+        })
+    }
+
     sendMessage(sender, token, message) {
         request({
             url: 'https://graph.facebook.com/v2.6/me/messages',
