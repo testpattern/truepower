@@ -23,7 +23,7 @@ class Responder {
             return item.name.toLowerCase() === child.toLowerCase();
         });
 
-        sendMessage(sender, token, option.message);
+        this.sendMessage(sender, token, option.message);
     }
 
     sendMessage(sender, token, message) {
