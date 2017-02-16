@@ -45,12 +45,12 @@
                     "buttons":[{
                         "type":"postback",
                         "title":"Higher",
-                        "payload":"Billing.Higher"
+                        "payload":"Billing.TariffIntro"
                     },
                     {
                         "type":"postback",
                         "title":"Lower",
-                        "payload":"Billing.Lower"
+                        "payload":"Billing.TariffIntro"
                     }]
                 }
             }
@@ -67,12 +67,12 @@
                     "buttons":[{
                         "type":"postback",
                         "title":"Tariff",
-                        "payload":"Billing.TariffIntro"
+                        "payload":"Billing.TariffAccount"
                     },
                     {
                         "type":"postback",
                         "title":"Meter read",
-                        "payload":"Account.MeterIntro"
+                        "payload":"Account.MeterReadingIntro"
                     }]
                 }
             }
@@ -93,11 +93,11 @@
                     },{
                         "type":"postback",
                         "title":"Check tariff",
-                        "payload":"BillingTariff"
+                        "payload":"Billing.Conclusion"
                     },{
                         "type":"postback",
                         "title":"Meter read",
-                        "payload":"Account.MeterIntro"
+                        "payload":"Account.MeterReadingSubmit"
                     }]
                 }
             }
