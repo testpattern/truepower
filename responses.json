@@ -1,5 +1,4 @@
-[
-{
+[{
     "section":"Welcome",
     "items" : [{
       "name": "Intro",
@@ -63,7 +62,7 @@
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text": "It could be that you’ve changed tariff\nOr it’s possible that your account has been updated by a reading & this is not yet reflected.\nWhich of these do you think is most likely?",
+                    "text": "It could be that you’ve changed tariff\n\nOr it’s possible that your account has been updated by a reading & this is not yet reflected.\n\nWhich of these do you think is most likely?",
                     "buttons":[{
                         "type":"postback",
                         "title":"Tariff",
@@ -85,7 +84,7 @@
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text": "If you’ve changed tariff recently it might be that your account is yet to be updated for this billing cycle.\nOr it might be that we don’t have a recent meter reading.\nNot quite done.",
+                    "text": "If you’ve changed tariff recently it might be that your account is yet to be updated for this billing cycle.\n\nOr it might be that we don’t have a recent meter reading.\nNot quite done.",
                     "buttons":[{
                         "type":"postback",
                         "title":"Check tariff",
@@ -172,7 +171,7 @@
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text": "We use a combination of your readings and estimates to calculate your bill. Keep bills accurate by sending monthly readings.\nI gave a reading",
+                    "text": "We use a combination of your readings and estimates to calculate your bill. Keep bills accurate by sending monthly readings.\n\nI gave a reading",
                     "buttons":[{
                         "type":"postback",
                         "title":"In the last 5 days",
@@ -222,7 +221,7 @@
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text":"Ok. It can take 5 days for your account to be updated.\nWe use a combination of your readings and estimates to calculate your bill.\nYou will receive a notification when the update has been received.\nYour next bill will be adjusted to reflect your latest reading[TODO END]"
+                    "text":"Ok. It can take 5 days for your account to be updated.\n\nWe use a combination of your readings and estimates to calculate your bill.\n\nYou will receive a notification when the update has been received.\n\nYour next bill will be adjusted to reflect your latest reading[TODO END]"
                 }
             }
         }
@@ -262,7 +261,7 @@
                 "type": "template",
                 "payload":{
                     "template_type":"button",
-                    "text": "You can set your payment details in your online account. Go to Account Summary and click ‘Change your bank details’\nWhat would you like to change?",
+                    "text": "You can set your payment details in your online account. Go to Account Summary and click ‘Change your bank details’\n\nWhat would you like to change?",
                     "buttons":[{
                         "type":"postback",
                         "title":"Direct Debit amount",
@@ -319,7 +318,7 @@
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text": "Tell us how we can help and we’ll get back to you shortly.\nRemember to include your account number and name.\nYou should be the account holder, otherwise we need permission to discuss your needs.\nNPower online account [TODO text input]"
+                    "text": "Tell us how we can help and we’ll get back to you shortly.\n\nRemember to include your account number and name.\n\nYou should be the account holder, otherwise we need permission to discuss your needs.\nNPower online account [TODO text input]"
                 }
             }
         }
@@ -363,5 +362,4 @@
             }
         }
     }]
-}
-]
+}]
