@@ -16,6 +16,8 @@ class Responder {
         var parent = payload.split('.')[0];
         var child = payload.split('.')[0];
 
+        console.log('%d %d', parent, child);
+
         var result = this.responses.find(function(item) {
             return item.section.toLowerCase() === parent.toLowerCase();
         });
