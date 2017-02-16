@@ -105,8 +105,11 @@
                 "type":"template",
                 "payload":{
                     "template_type":"generic",
-                    "title": "",
-                    "subtitle": "It might be that you’ve gone on to our standard tariff. Have a look on your bill. It will say here:{IMAGE]... TODO CONCLUSION"
+                    "elements":[{
+                        "title": "",
+                        "image_url": "https://placehold.it/350x150",
+                        "subtitle": "It might be that you’ve gone on to our standard tariff. Have a look on your bill. It will say here:{IMAGE]... TODO CONCLUSION"
+                    }]
                 }
             }
         }
