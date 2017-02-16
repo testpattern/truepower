@@ -367,8 +367,8 @@
             "attachment": {
                 "type":"template",
                 "payload":{
-                    "template_type":"button",
-                    "text": "Thanks for your feedback."
+                    "template_type":"generic",
+                    "title": "Thanks for your feedback."
                 }
             }
         }
