@@ -223,25 +223,16 @@
             "attachment": {
                 "type":"template",
                 "payload":{
-                    "template_type":"button",
-                    "text": "You can set your details in your online account.[LINK + IMAGE]",
-                    "buttons":[{
-                        "type":"postback",
-                        "title":"Go there now",
-                        "payload":"Account.DetailsConclusion"
+                    "template_type":"generic",
+                    "elements":[
+                    {
+                        "title": "You can set your details in your online account.",
+                        "image_url":"http://placehold.it/350x150",
+                        "default_action": {
+                            "type":"web_url",
+                            "url":"http://placehold.it/350x150"                            
+                        }
                     }]
-                }
-            }
-        }
-    },
-    {
-        "name": "DetailsConclusion",
-        "message" :{
-            "attachment": {
-                "type":"template",
-                "payload":{
-                    "template_type":"button",
-                    "text": "[LINK + IMAGE]"
                 }
             }
         }
@@ -302,8 +293,11 @@
             "attachment": {
                 "type":"template",
                 "payload":{
-                    "template_type":"button",
-                    "text":"Ok. It can take 5 days for your account to be updated.\n\nWe use a combination of your readings and estimates to calculate your bill.\n\nYou will receive a notification when the update has been received.\n\nYour next bill will be adjusted to reflect your latest reading[TODO END]"
+                    "template_type":"generic",
+                    "elements":[{
+                        "title":"Ok. It can take 5 days for your account to be updated.\n\nWe use a combination of your readings and estimates to calculate your bill.\n\nYou will receive a notification when the update has been received.\n\nYour next bill will be adjusted to reflect your latest reading[TODO END]",
+                        "image_url":"http://placehold.it/350x150"
+                    }]
                 }
             }
         }
