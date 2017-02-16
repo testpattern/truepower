@@ -25,11 +25,6 @@
                         "type":"postback",
                         "title":"Payment",
                         "payload":"Payments.Intro"
-                    },
-                    {
-                        "type":"postback",
-                        "title":"Something else",
-                        "payload":"General.Intro"
                     }]
                 }]
             }
