@@ -60,7 +60,7 @@
             "type":"template",
             "payload":{
                 "template_type":"list",
-                "top_lement_style":"compact",
+                "top_element_style":"compact",
                 "elements":[{
                     "title": "Bills",
                     "subtitle":"Everything to do with your bills",
