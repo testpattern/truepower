@@ -105,7 +105,8 @@
                 "type":"template",
                 "payload":{
                     "template_type":"generic",
-                    "text": "It might be that you’ve gone on to our standard tariff. Have a look on your bill. It will say here:{IMAGE]... TODO CONCLUSION"
+                    "title": "",
+                    "subtitle": "It might be that you’ve gone on to our standard tariff. Have a look on your bill. It will say here:{IMAGE]... TODO CONCLUSION"
                 }
             }
         }
