@@ -47,14 +47,12 @@ function testText(text){
 app.post('/webhook/', function (req, res) {
     console.log('webhook!')
 	let messaging_events = req.body.entry[0].messaging
-    console.log(messaging_events)
+    
 	for (let i = 0; i < messaging_events.length; i++) {
         let event = req.body.entry[0].messaging[i]
 		let sender = event.sender.id
 		if (event.message && event.message.text) {            
-			let text = event.message.text.toLowerCase()
-            console.log('message')
-            console.log(text)            
+			let text = event.message.text.toLowerCase()            
 			if (text === 'generic') {
 				responder.generic(sender, token)
 				continue
