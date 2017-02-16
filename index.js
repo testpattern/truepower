@@ -33,6 +33,25 @@ function testResponders() {
     console.log(message);
 }
 //testResponders();
+function testIntro(){
+    var sender = "1235693409813391";
+    var token = "EAAaXW9BqZA2IBAGQgmZBZAyEeMg5CJHNmlT9Wogej50lytdSICHtdHqqFZBldXwnXutUNZC7fHz4NIy7cOq1C5xIqL9z78A1ab2MuBrlXDEl9MvZADRHJC5U8GkOIdeNNlZBKLuThTbMGBpEcOqGXhrmvAZAsFTw6T2xjHkwg6vOZAAZDZD";
+    request({
+        url: `https://graph.facebook.com/v2.6/${sender}?fields=first_name&access_token=${token}`,
+        method: 'GET'
+    }, function(error, response, body){
+        console.log('user name');
+        if (body.length) {
+            firstname = JSON.parse(body).first_name;
+            var intro = { 
+                "text" : "Hi " + firstname + ". What can I help you with today?" 
+            }
+            responder.sendMessage(sender, token, intro);
+        }
+    });
+}
+//testIntro()
+
 function testText(text){
     var data = "{ sender: { id: '1235693409813391' },"+
                "2017-02-14T11:12:51.636367+00:00 app[web.1]:     recipient: { id: '371501613224785' },"+
