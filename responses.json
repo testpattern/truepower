@@ -12,11 +12,7 @@
                     "title":"Welcome to TruePower.",
                     "subtitle": "Hi. What can I help you with today – is your question about a (recent) bill?",
                     "default_action": {
-                        "type": "web_url",
-                        "url": "https://peterssendreceiveapp.ngrok.io/view?item=103",
-                        "messenger_extensions": true,
-                        "webview_height_ratio": "tall",
-                        "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                        "type": "web_url"
                     },
                     "buttons":[{
                         "type":"postback",

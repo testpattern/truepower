@@ -27,11 +27,8 @@ app.get('/', function (req, res) {
 // 	}
 // })
 function testResponders() {
-    var text = "Welcome.Intro";
-    var section = text.split('.')[0];
-    var option = text.split('.')[1];
-    let message = responder.respond(section, option);
-    //let message2 = responder.welcome('371501613224785', token);
+    var payload = "Welcome.Intro";    
+    let message = responder.respond(null, null, payload);
     console.log(message);
 }
 //testResponders();
