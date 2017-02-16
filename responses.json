@@ -46,7 +46,7 @@
                     "buttons":[
                         {
                         "type":"postback",
-                        "title":"Payment",
+                        "title":"Something else",
                         "payload":"General.Intro"
                     }]
                 }]
@@ -100,7 +100,7 @@
                     "buttons":[
                         {
                         "type":"postback",
-                        "title":"Payment",
+                        "title":"Something else",
                         "payload":"General.Intro"
                     }]
                 }]
