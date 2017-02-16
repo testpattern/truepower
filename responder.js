@@ -18,10 +18,15 @@ class Responder {
 
         var result = this.responses.find(function(item) {
             return item.section.toLowerCase() === parent.toLowerCase();
-        });        
+        });
+
+        console.log(result);
+
         var option = result.items.find(function(item) {
             return item.name.toLowerCase() === child.toLowerCase();
         });
+
+        console.log(option);
 
         this.sendMessage(sender, token, option.message);
     }
