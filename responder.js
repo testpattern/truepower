@@ -31,7 +31,7 @@ class Responder {
             url: `https://graph.facebook.com/v2.6/${sender}?fields=first_name&access_token=${token}`,
             method: 'GET'
         }, function(error, response, body) {
-            if (body.first_name) {
+            if (body.length) {
                 return JSON.parse(body).first_name;                
             }
             if (error) {
