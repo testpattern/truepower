@@ -291,15 +291,15 @@
                 "payload":{
                     "template_type":"generic",
                     "elements":[{
-                        "title": "NPower online account [TODO link + image]",
-                        "subtitle": "[TODO link + image]",
+                        "title": "NPower online account",
+                        "subtitle": "Go there now",
                         "image_url": "https://placehold.it/350x150"
                     },{
-                        "buttons":{
+                        "buttons":[{
                             "type":"web_url",
                             "url": "https://www.npower.com/",
                             "title": "NPower online account"
-                        }
+                        }]
                     }]
                 }
             }
