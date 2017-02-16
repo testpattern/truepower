@@ -106,9 +106,9 @@
                 "payload":{
                     "template_type":"generic",
                     "elements":[{
-                        "title": "Billing conclusion",
+                        "title": "It might be that you’ve gone on to our standard tariff. Have a look on your bill",
                         "image_url": "https://placehold.it/350x150",
-                        "subtitle": "It might be that you’ve gone on to our standard tariff. Have a look on your bill. It will say here:{IMAGE]... TODO CONCLUSION"
+                        "subtitle": "It will say here"
                     }]
                 }
             }
