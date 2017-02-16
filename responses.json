@@ -10,7 +10,13 @@
                 "elements":[{
                     "title":"Welcome to TruePower.",
                     "subtitle": "Hi. What can I help you with today – is your question about a (recent) bill?",                    
-                    "buttons":[{
+                    "buttons":[
+                    {
+                        "type":"postback",
+                        "title":"Bills",
+                        "payload":"Billing.Intro"
+                    },
+                    {
                         "type":"postback",
                         "title":"My Account",
                         "payload":"Account.Intro"
@@ -22,8 +28,8 @@
                     },
                     {
                         "type":"postback",
-                        "title":"Bills",
-                        "payload":"Billing.Intro"
+                        "title":"Something else",
+                        "payload":"General.Intro"
                     }]
                 }]
             }
@@ -203,16 +209,16 @@
                     "text":"We use a combination of your readings and estimates to calculate your bill. Keep bills accurate by sending monthly readings",
                     "buttons":[{
                         "type":"postback",
-                        "title":"Submit online (TODO)",
-                        "payload":"General.Conclusion"
+                        "title":"Submit online",
+                        "payload":"Global.Conclusion"
                     },{
                         "type":"postback",
-                        "title":"Submit in app (TODO)",
-                        "payload":"General.Conclusion"
+                        "title":"Submit in app",
+                        "payload":"Global.Conclusion"
                     },{
                         "type":"postback",
-                        "title":"Remind me (TODO)",
-                        "payload":"General.Conclusion"
+                        "title":"Remind me",
+                        "payload":"Global.Conclusion"
                     }]
                 }
             }
@@ -347,15 +353,15 @@
                      "buttons":[{
                         "type":"postback",
                         "title":"Great!",
-                        "payload":"General.Complete"
+                        "payload":"Global.Complete"
                     },{
                         "type":"postback",
                         "title":"Ok",
-                        "payload":"General.Complete"
+                        "payload":"Global.Complete"
                     },{
                         "type":"postback",
                         "title":"Needs improvement",
-                        "payload":"General.Complete"
+                        "payload":"Global.Complete"
                     }]
                 }
             }
