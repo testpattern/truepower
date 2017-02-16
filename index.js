@@ -65,6 +65,11 @@ app.post('/webhook/', function (req, res) {
 			    responder.respond(sender, token, "Welcome.Intro")
 				continue
 			}
+
+            if (text === "demo list") {
+			    responder.respond(sender, token, "Welcome.List")
+				continue
+			}
 		}
 		if (event.postback) {
             console.log('postback!')

@@ -53,6 +53,60 @@
             }
         }
     }
+},{
+      "name": "List",
+      "message": {
+        "attachment":{
+            "type":"template",
+            "payload":{
+                "template_type":"list",
+                "top_lement_style":"compact",
+                "elements":[{
+                    "title": "Bills",
+                    "subtitle":"Everything to do with your bills",
+                    "image_url": "http://placehold.it/350x150",
+                    "buttons":[
+                    {
+                        "type":"postback",
+                        "title":"Bills",
+                        "payload":"Billing.Intro"
+                    }]
+                },
+                {
+                    "title": "My Account",
+                    "subtitle":"Manage your account",
+                    "image_url": "http://placehold.it/350x150",
+                    "buttons":[
+                    {
+                        "type":"postback",
+                        "title":"My Account",
+                        "payload":"Account.Intro"
+                    }]
+                },
+                {
+                    "title": "Payment",
+                    "subtitle":"Monitor how and what you pay",
+                    "image_url": "http://placehold.it/350x150",
+                    "buttons":[
+                    {
+                        "type":"postback",
+                        "title":"Payment",
+                        "payload":"Payments.Intro"
+                    }]
+                },{
+                    "title": "Something else",
+                    "subtitle":"Ask us a question",
+                    "image_url": "http://placehold.it/350x150",
+                    "buttons":[
+                        {
+                        "type":"postback",
+                        "title":"Payment",
+                        "payload":"General.Intro"
+                    }]
+                }]
+            }
+        }
+    }
 }]
 },
 {
