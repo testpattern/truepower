@@ -73,7 +73,9 @@ app.post('/webhook/', function (req, res) {
                     console.log('user name');
                     if (body.first_name) {
                         firstname = body.first_name;
-                        var intro = "Hi " + firstname + ". What can I help you with today?";
+                        var intro = { 
+                            "text" : "Hi " + firstname + ". What can I help you with today?" 
+                        }
                         responder.sendMessage(sender, token, intro);
                     }
                 });
