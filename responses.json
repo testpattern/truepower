@@ -244,11 +244,11 @@
                     },{
                         "type":"postback",
                         "title":"Change my bank details",
-                        "payload":""
+                        "payload":"Payments.ManageBankDetails"
                     },{
                         "type":"postback",
                         "title":"Track my Direct Debit",
-                        "payload":""
+                        "payload":"Payments.ManageDirectDebit"
                     }]
                 }
             }
