@@ -85,24 +85,20 @@
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text": "It might be that you’ve gone on to our standard tariff. Have a look on your bill. It will say here:{IMAGE]",
+                    "text": "If you’ve changed tariff recently it might be that your account is yet to be updated for this billing cycle.\nOr it might be that we don’t have a recent meter reading.\nNot quite done.",
                     "buttons":[{
-                        "type":"postback",
-                        "title":"I have another question",
-                        "payload":"Billing.Conclusion"
-                    },{
                         "type":"postback",
                         "title":"Check tariff",
                         "payload":"Billing.Conclusion"
                     },{
                         "type":"postback",
                         "title":"Meter read",
-                        "payload":"Account.MeterReadingSubmit"
+                        "payload":"Account.MeterReadingIntro"
                     }]
                 }
             }
         }
-    },
+    },    
     {
         "name": "Conclusion",
         "message":{
@@ -205,15 +201,15 @@
                     "buttons":[{
                         "type":"postback",
                         "title":"Submit online (TODO)",
-                        "payload":""
+                        "payload":"General.Conclusion"
                     },{
                         "type":"postback",
                         "title":"Submit in app (TODO)",
-                        "payload":""
+                        "payload":"General.Conclusion"
                     },{
                         "type":"postback",
                         "title":"Remind me (TODO)",
-                        "payload":""
+                        "payload":"General.Conclusion"
                     }]
                 }
             }
