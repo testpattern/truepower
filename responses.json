@@ -362,7 +362,7 @@
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text":"Visit Npower website for more details",
+                    "text":"Npower online account",
                     "buttons":[
                     {
                         "type":"web_url",
