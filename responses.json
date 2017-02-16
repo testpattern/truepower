@@ -230,7 +230,7 @@
                         "image_url":"http://placehold.it/350x150",
                         "default_action": {
                             "type":"web_url",
-                            "url":"http://placehold.it/350x150"                            
+                            "url":"http://www.npower.com/"                            
                         }
                     }]
                 }
