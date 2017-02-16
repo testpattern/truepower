@@ -166,7 +166,7 @@
         }
     },
     {
-        "name": "MeterReadingInfo",
+        "name": "MeterReadingIntro",
         "message" : {
             "attachment": {
                 "type":"template",
