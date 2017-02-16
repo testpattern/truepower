@@ -71,10 +71,8 @@ app.post('/webhook/', function (req, res) {
                     method: 'GET'
                 }, function(error, response, body){
                     console.log('user name');
-                    console.log(response);
-                    console.log(body);
-                    if (response.first_name) {
-                        firstname = response.first_name;
+                    if (body.first_name) {
+                        firstname = body.first_name;
                         var intro = "Hi " + firstname + ". What can I help you with today?";
                         responder.sendMessage(sender, token, intro);
                     }
