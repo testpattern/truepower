@@ -9,7 +9,6 @@ class Responder {
 
     constructor() {
         this.responses = require('./responses.json');
-        console.log(this.responses);
     }
     
     respond(sender, token, payload) {

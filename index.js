@@ -16,7 +16,7 @@ app.use(bodyParser.json())
 console.log('started...')
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a chat bot')
+	res.send('True Power Bot is alive')
 })
 // for facebook verification
 // app.get('/webhook/', function (req, res) {
