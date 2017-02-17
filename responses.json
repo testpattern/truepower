@@ -234,21 +234,28 @@
     },
     {
         "name": "MeterReadingSubmit",
-        "message" : {
-            "text": "We use a combination of your readings and estimates to calculate your bill. Keep bills accurate by sending monthly readings",
-            "quick_replies":[{
-                "content_type":"text",
-                "title":"Submit online",
-                "payload":"Global.Conclusion"
-            },{
-                "content_type":"text",
-                "title":"Submit in app",
-                "payload":"Global.Conclusion"
-            },{
-                "content_type":"text",
-                "title":"Remind me",
-                "payload":"Global.Conclusion"
-            }]
+        "attachment": {
+            "type":"template",
+            "payload":{
+                "template_type":"generic",
+                "elements":[{
+                    "title":"We use a combination of your readings and estimates to calculate your bill.",
+                    "subtitle": "Keep bills accurate by sending monthly readings",
+                    "buttons":[{
+                        "type":"postback",
+                        "title":"Submit online",
+                        "payload":"Global.Conclusion"
+                    },{
+                        "type":"postback",
+                        "title":"Submit in app",
+                        "payload":"Global.Conclusion"
+                    },{
+                        "type":"postback",
+                        "title":"Remind me",
+                        "payload":"Global.Conclusion"
+                    }]
+                }]
+            }
         }
     },
     {
