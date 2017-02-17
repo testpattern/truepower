@@ -362,18 +362,7 @@
     {
         "name":"Question",
         "message":{
-            "attachment": {
-                "type":"template",
-                "payload":{
-                    "template_type":"generic",
-                    "title": "Tell us how we can help and we’ll get back to you shortly.\n\nRemember to include your account number and name.\n\nYou should be the account holder, otherwise we need permission to discuss your needs.\nNPower online account",
-                    "buttons":[{
-                        "type":"postback",
-                        "title":"Give us feedback",
-                        "payload":"Global.Conclusion"
-                    }]
-                }
-            }
+            "text":"Tell us how we can help and we’ll get back to you shortly.\n\nRemember to include your account number and name.\n\nYou should be the account holder, otherwise we need permission to discuss your needs."
         }
     }]
 },
