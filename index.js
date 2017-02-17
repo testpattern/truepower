@@ -10,13 +10,13 @@ const url = require('url')
 
 let Responder = require('./responder');
 let responder = new Responder();
-//let Tests = require('./tests/tests.js');
-//let tests = new Tests(true);
 // read a config value to control whether to run tests
-// and maybe define which tests to run by name
-// recommended to inject access tokens as environmental variables, e.g.
+//let tests = new Tests(true);
+//let Tests = require('./tests/tests.js');
+// sits in an environment variable (on heroku it's an app setting)
 const token = process.env.FB_PAGE_ACCESS_TOKEN;
-
+// set the port, so it can be retrieved on what to listen
+// on heroku it's stored in an environment variable, otherwise it's 5000
 app.set('port', (process.env.PORT || 5000))
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}))
@@ -71,12 +71,14 @@ app.post('/webhook/', function (req, res) {
 				continue
 			}
 		}
+
 		if (event.postback) {
             console.log('postback!')
             console.log(event.postback.payload)
             responder.respond(sender, token, event.postback.payload)
 			continue
 		}
+
         // if (event.message.quick_reply) {
         //     console.log('quick reply!');
         //     console.log(event.message);
