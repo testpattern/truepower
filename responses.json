@@ -303,7 +303,7 @@
                 "type": "template",
                 "payload":{
                     "template_type":"button",
-                    "text": "You can set your payment details in your online account. Go to <a href='https://www.npower.com'>Account Summary</a> and click ‘Change your bank details’\n\nWhat would you like to change?",
+                    "text": "You can set your payment details in your online account. Go to 'https://www.npower.com', Account Summary and click ‘Change your bank details’\n\nWhat would you like to change?",
                     "buttons":[{
                         "type":"postback",
                         "title":"Direct Debit amount",
