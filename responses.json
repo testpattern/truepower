@@ -71,23 +71,23 @@
                 }]
             }
         }
-    }
-},{
-    "name": "QuickReply",
-    "message": {
-        "text":"Hi. What can I help you with today - is your question about a (recent) bill?",
-        "quick_replies":[{
-            "content_type":"text",
-            "title":"Yes",
-            "payload":"Global.Conclusion"
-        },
-        {
-            "content_type":"text",
-            "title":"No",
-            "payload":"Global.Conclusion"
-        }]
-    }
-}]
+        }
+    },{
+        "name": "QuickReply",
+        "message": {
+            "text":"Hi. What can I help you with today - is your question about a (recent) bill?",
+            "quick_replies":[{
+                "content_type":"text",
+                "title":"Yes",
+                "payload":"Global.Conclusion"
+            },
+            {
+                "content_type":"text",
+                "title":"No",
+                "payload":"Global.Conclusion"
+            }]
+        }
+    }]
 },
 {
     "section":"Billing",
