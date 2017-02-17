@@ -227,7 +227,7 @@
                     "elements":[
                     {
                         "title": "You can set your details in your online account.",
-                        "image_url":"http://placehold.it/350x150",
+                        "image_url":"https://truepower.herokuapp.com/assets/online-account.png",
                         "default_action": {
                             "type":"web_url",
                             "url":"http://www.npower.com/"                            
@@ -295,8 +295,12 @@
                 "payload":{
                     "template_type":"generic",
                     "elements":[{
-                        "title":"Ok. It can take 5 days for your account to be updated.\n\nWe use a combination of your readings and estimates to calculate your bill.\n\nYou will receive a notification when the update has been received.\n\nYour next bill will be adjusted to reflect your latest reading[TODO END]",
-                        "image_url":"http://placehold.it/350x150"
+                        "title":"Ok. It can take 5 days for your account to be updated.\n\nWe use a combination of your readings and estimates to calculate your bill.\n\nYou will receive a notification when the update has been received.\n\nYour next bill will be adjusted to reflect your latest reading",
+                        "buttons" :[{
+                            "type":"postback",
+                            "title":"Give us feedback",
+                            "payload":"Global.Conclusion"
+                        }]
                     }]
                 }
             }
@@ -399,8 +403,13 @@
             "attachment": {
                 "type":"template",
                 "payload":{
-                    "template_type":"button",
-                    "text": "Tell us how we can help and we’ll get back to you shortly.\n\nRemember to include your account number and name.\n\nYou should be the account holder, otherwise we need permission to discuss your needs.\nNPower online account [TODO text input]"
+                    "template_type":"generic",
+                    "title": "Tell us how we can help and we’ll get back to you shortly.\n\nRemember to include your account number and name.\n\nYou should be the account holder, otherwise we need permission to discuss your needs.\nNPower online account",
+                    "buttons":[{
+                        "type":"postback",
+                        "title":"Give us feedback",
+                        "payload":"Global.Conclusion"
+                    }]
                 }
             }
         }
