@@ -11,7 +11,7 @@ const url = require('url')
 let Responder = require('./responder');
 let responder = new Responder();
 let Tests = require('./tests/tests.js');
-let tests = new Tests(true);
+let tests = new Tests(false);
 // read a config value to control whether to run tests
 // and maybe define which tests to run by name
 // recommended to inject access tokens as environmental variables, e.g.
