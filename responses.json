@@ -108,7 +108,7 @@
                     "text": "It could be that you’ve changed tariff\n\nOr it’s possible that your account has been updated by a reading & this is not yet reflected.\n\nWhich of these do you think is most likely?",
                     "buttons":[{
                         "type":"postback",
-                        "title":"Tariff",
+                        "title":"Tariff \\xF0\\x9F\\x92\\xB0",
                         "payload":"Billing.TariffAccount"
                     },
                     {
