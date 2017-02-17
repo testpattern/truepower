@@ -8,11 +8,15 @@ const fs = require('fs')
 const http = require('http')
 const url = require('url')
 
-var Responder = require('./responder');
-var responder = new Responder();
+let Responder = require('./responder');
+let responder = new Responder();
+//let Tests = require('../tests/tests');
+// read a config value to control whether to run tests
+// and maybe define which tests to run by name
+//let tests = new Tests(false);
 // recommended to inject access tokens as environmental variables, e.g.
 const token = process.env.FB_PAGE_ACCESS_TOKEN;
-var firstname = "user";
+
 app.set('port', (process.env.PORT || 5000))
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}))
@@ -34,41 +38,8 @@ app.get('/', function (req, res) {
 // 		res.send('Error, wrong token')
 // 	}
 // })
-function image() {
-    request({
-        url:"http://localhost:5000/",
-        method: "GET",
-    }, function(error, response, body) {
-        console.log(body);
-    })
-    request({
-        url:"http://localhost:5000/assets/meter.png",
-        method: "GET",
-    }, function(error, response, body) {
-        console.log(body);
-    })
-}
-//image();
 
-function testIntro(){
-    var sender = "1235693409813391";
-    var token = "EAAaXW9BqZA2IBAGQgmZBZAyEeMg5CJHNmlT9Wogej50lytdSICHtdHqqFZBldXwnXutUNZC7fHz4NIy7cOq1C5xIqL9z78A1ab2MuBrlXDEl9MvZADRHJC5U8GkOIdeNNlZBKLuThTbMGBpEcOqGXhrmvAZAsFTw6T2xjHkwg6vOZAAZDZD";
-    request({
-        url: `https://graph.facebook.com/v2.6/${sender}?fields=first_name&access_token=${token}`,
-        method: 'GET'
-    }, function(error, response, body){
-        console.log('user name');
-        if (body.length) {
-            firstname = JSON.parse(body).first_name;
-            var intro = { 
-                "text" : "Hi " + firstname + ". What can I help you with today? :)" 
-            }
-            responder.sendMessage(sender, token, intro);
-        }
-    });
-}
-//testIntro()
-// to post data
+// react to /webhook/ call
 app.post('/webhook/', function (req, res) {
     console.log('webhook!')
 	let messaging_events = req.body.entry[0].messaging

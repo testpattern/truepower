@@ -418,15 +418,15 @@
                     "text": "Thank you. Please tell us how you think we're doing.",
                      "buttons":[{
                         "type":"postback",
-                        "title":"Great!",
+                        "title":"Great! :D",
                         "payload":"Global.Complete"
                     },{
                         "type":"postback",
-                        "title":"Ok",
+                        "title":"Ok :)",
                         "payload":"Global.Complete"
                     },{
                         "type":"postback",
-                        "title":"Needs improvement",
+                        "title":"Needs improvement :(",
                         "payload":"Global.Complete"
                     }]
                 }
