@@ -393,15 +393,9 @@
             }
         }
     },{
-         "name":"Complete",
+        "name":"Complete",
         "message":{
-            "attachment": {
-                "type":"template",
-                "payload":{
-                    "template_type":"generic",
-                    "title": "Thanks for your feedback."
-                }
-            }
+            "text": "Thanks for your feedback. To start again type `hi`"
         }
     }]
 }]
