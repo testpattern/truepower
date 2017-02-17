@@ -44,7 +44,7 @@ function testIntro(){
         if (body.length) {
             firstname = JSON.parse(body).first_name;
             var intro = { 
-                "text" : "Hi " + firstname + ". What can I help you with today?" 
+                "text" : "Hi " + firstname + ". What can I help you with today? :)" 
             }
             responder.sendMessage(sender, token, intro);
         }
