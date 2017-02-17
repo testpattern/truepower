@@ -50,7 +50,7 @@ app.post('/webhook/', function (req, res) {
 		let sender = event.sender.id
 		if (event.message && event.message.text) {            
 			let text = event.message.text.toLowerCase();
-            			
+
             if (text === 'quick reply') {
 				responder.respond(sender, token, "Welcome.QuickReply");
 				continue
@@ -80,6 +80,7 @@ app.post('/webhook/', function (req, res) {
 		}
         if (event.message.quick_reply) {
             console.log('quick reply!');
+            console.log(event.message);
             responder.respond(sender, token, event.message.quick_reply.payload)
         }
 	}
