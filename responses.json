@@ -265,7 +265,8 @@
                 "payload":{
                     "template_type":"generic",
                     "elements":[{
-                        "title":"Ok. It can take 5 days for your account to be updated.\n\nWe use a combination of your readings and estimates to calculate your bill.\n\nYou will receive a notification when the update has been received.\n\nYour next bill will be adjusted to reflect your latest reading",
+                        "title": "Ok",
+                        "subtitle":"It can take 5 days for your account to be updated.\n\nWe use a combination of your readings and estimates to calculate your bill.\n\nYou will receive a notification when the update has been received.\n\nYour next bill will be adjusted to reflect your latest reading",
                         "buttons" :[{
                             "type":"postback",
                             "title":"Give us feedback",
