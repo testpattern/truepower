@@ -4,6 +4,10 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
+const fs = require('fs')
+const http = require('http')
+const url = require('url')
+
 var Responder = require('./responder');
 var responder = new Responder();
 // recommended to inject access tokens as environmental variables, e.g.
@@ -14,8 +18,11 @@ app.set('port', (process.env.PORT || 5000))
 app.use(bodyParser.urlencoded({extended: false}))
 // parse application/json
 app.use(bodyParser.json())
+// serve /assets directory
+app.use('/assets', express.static(__dirname + '/assets'));
+
 console.log('started...')
-// index
+// serve root path
 app.get('/', function (req, res) {
 	res.send('True Power Bot is alive')
 })
@@ -27,12 +34,22 @@ app.get('/', function (req, res) {
 // 		res.send('Error, wrong token')
 // 	}
 // })
-function testResponders() {
-    var payload = "Welcome.Intro";    
-    let message = responder.respond(null, null, payload);
-    console.log(message);
+function image() {
+    request({
+        url:"http://localhost:5000/",
+        method: "GET",
+    }, function(error, response, body) {
+        console.log(body);
+    })
+    request({
+        url:"http://localhost:5000/assets/meter.png",
+        method: "GET",
+    }, function(error, response, body) {
+        console.log(body);
+    })
 }
-//testResponders();
+//image();
+
 function testIntro(){
     var sender = "1235693409813391";
     var token = "EAAaXW9BqZA2IBAGQgmZBZAyEeMg5CJHNmlT9Wogej50lytdSICHtdHqqFZBldXwnXutUNZC7fHz4NIy7cOq1C5xIqL9z78A1ab2MuBrlXDEl9MvZADRHJC5U8GkOIdeNNlZBKLuThTbMGBpEcOqGXhrmvAZAsFTw6T2xjHkwg6vOZAAZDZD";
