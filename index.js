@@ -11,7 +11,7 @@ const url = require('url')
 let Responder = require('./responder');
 let responder = new Responder();
 let Tests = require('./tests/tests.js');
-let tests = new Tests(false);
+//let tests = new Tests(true);
 // read a config value to control whether to run tests
 // and maybe define which tests to run by name
 // recommended to inject access tokens as environmental variables, e.g.
@@ -49,14 +49,10 @@ app.post('/webhook/', function (req, res) {
         let event = req.body.entry[0].messaging[i]
 		let sender = event.sender.id
 		if (event.message && event.message.text) {            
-			let text = event.message.text.toLowerCase()            
-			if (text === 'generic') {
-				responder.generic(sender, token)
-				continue
-			}
-            
+			let text = event.message.text.toLowerCase();
+            			
             if (text === 'quick reply') {
-				responder.quickReply(sender, token)
+				responder.respond(sender, token, "Welcome.QuickReply");
 				continue
 			}
 
@@ -82,9 +78,9 @@ app.post('/webhook/', function (req, res) {
             responder.respond(sender, token, event.postback.payload)
 			continue
 		}
-        if (event.quick_reply) {
+        if (event.message.quick_reply) {
             console.log('quick reply!');
-            responder.respond(sender, token, event.quick_reply.payload)
+            responder.respond(sender, token, event.message.quick_reply.payload)
         }
 	}
 	res.sendStatus(200)
