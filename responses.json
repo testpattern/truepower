@@ -18,7 +18,7 @@
                         "payload":"Billing.Intro"
                     },{
                         "type":"postback",
-                        "title":"MIssing bill",
+                        "title":"Missing bill",
                         "payload":"Billing.Intro"
                     }]
                 },
@@ -30,7 +30,7 @@
                     {
                         "type":"postback",
                         "title":"Give a meter reading",
-                        "payload":"Account.Intro"
+                        "payload":"Account.MeterReadingSubmit"
                     },
                     {
                         "type":"postback",
@@ -151,7 +151,12 @@
                     "elements":[{
                         "title": "It might be that you’ve gone on to our standard tariff. Have a look on your bill",
                         "image_url": "https://truepower.herokuapp.com/assets/bill-section.png",
-                        "subtitle": "It will say here"
+                        "subtitle": "It will say here",
+                        "buttons":[{
+                            "type": "postback",
+                            "title": "Give us feedback",
+                            "payload": "Global.Conclusion"
+                        }]
                     }]
                 }
             }

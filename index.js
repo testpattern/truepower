@@ -10,10 +10,10 @@ const url = require('url')
 
 let Responder = require('./responder');
 let responder = new Responder();
-//let Tests = require('../tests/tests');
+let Tests = require('./tests/tests.js');
+let tests = new Tests(true);
 // read a config value to control whether to run tests
 // and maybe define which tests to run by name
-//let tests = new Tests(false);
 // recommended to inject access tokens as environmental variables, e.g.
 const token = process.env.FB_PAGE_ACCESS_TOKEN;
 
@@ -83,6 +83,7 @@ app.post('/webhook/', function (req, res) {
 			continue
 		}
         if (event.quick_reply) {
+            console.log('quick reply!');
             responder.respond(sender, token, event.quick_reply.payload)
         }
 	}
