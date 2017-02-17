@@ -10,7 +10,7 @@
                 "elements":[{
                     "title": "Bills",
                     "subtitle":"Everything to do with your bills",
-                    "image_url": "http://placehold.it/350x150",
+                    "image_url": "/assets/bills.png",
                     "buttons":[
                     {
                         "type":"postback",
@@ -418,15 +418,15 @@
                     "text": "Thank you. Please tell us how you think we're doing.",
                      "buttons":[{
                         "type":"postback",
-                        "title":"Great! :D",
+                        "title":"Great! :-D",
                         "payload":"Global.Complete"
                     },{
                         "type":"postback",
-                        "title":"Ok :)",
+                        "title":"Ok :-)",
                         "payload":"Global.Complete"
                     },{
                         "type":"postback",
-                        "title":"Needs improvement :(",
+                        "title":"Needs improvement :-(",
                         "payload":"Global.Complete"
                     }]
                 }
