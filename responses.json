@@ -64,7 +64,7 @@
                 "elements":[{
                     "title": "Bills",
                     "subtitle":"Everything to do with your bills",
-                    "image_url": "http://placehold.it/350x150",
+                    "image_url": "https://truepower.herokuapp.com/assets/bills.png",
                     "buttons":[
                     {
                         "type":"postback",
@@ -75,7 +75,7 @@
                 {
                     "title": "My Account",
                     "subtitle":"Manage your account",
-                    "image_url": "http://placehold.it/350x150",
+                    "image_url": "https://truepower.herokuapp.com/assets/meter.png",
                     "buttons":[
                     {
                         "type":"postback",
@@ -86,7 +86,7 @@
                 {
                     "title": "Payment",
                     "subtitle":"Monitor how and what you pay",
-                    "image_url": "http://placehold.it/350x150",
+                    "image_url": "https://truepower.herokuapp.com/assets/payments.png",
                     "buttons":[
                     {
                         "type":"postback",
@@ -96,7 +96,7 @@
                 },{
                     "title": "Something else",
                     "subtitle":"Ask us a question",
-                    "image_url": "http://placehold.it/350x150",
+                    "image_url": "https://truepower.herokuapp.com/assets/settings.png",
                     "buttons":[
                         {
                         "type":"postback",
