@@ -30,6 +30,7 @@ console.log('started...')
 app.get('/', function (req, res) {
 	res.send('True Power Bot is alive')
 })
+
 // for facebook verification
 // app.get('/webhook/', function (req, res) {
 // 	if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
@@ -61,7 +62,7 @@ app.post('/webhook/', function (req, res) {
 
             if (text === "hi" || text === "hello") {
                 // wrap all interactions?
-                responder.getUserFirstname(sender, token, function(firstname){
+                responder.getUserFirstname(sender, token, function(firstname) {
                     var intro = { "text" : `Hi ${firstname}. What can I help you with today?` };
                     responder.sendMessage(sender, token, intro);
                     setTimeout(function() {
