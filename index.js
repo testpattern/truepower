@@ -66,19 +66,13 @@ app.post('/webhook/', function (req, res) {
                     var intro = { "text" : `Hi ${firstname}. What can I help you with today?` };
                     responder.sendMessage(sender, token, intro);
                     setTimeout(function() {
-                        var term = text === "hi" ? "Welcome.Intro" : "Welcome.List";
-                        responder.respond(sender, token, term);
-                    }, 1500);
+                        responder.respond(sender, token, "Welcome.Intro");
+                    }, 1750);
                 });
             }
 
             if (text === 'welcome' || text === "demo") {
 			    responder.respond(sender, token, "Welcome.Intro")
-				continue
-			}
-
-            if (text === "demo list") {
-			    responder.respond(sender, token, "Welcome.List")
 				continue
 			}
 		}
