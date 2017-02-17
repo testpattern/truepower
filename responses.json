@@ -214,7 +214,7 @@
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text": "We use a combination of your readings and estimates to calculate your bill. Keep bills accurate by sending monthly readings.\n\nI gave a reading",
+                    "text": "Help us to bill accurately by sending us meter readings.\n\nI gave a reading",
                     "buttons":[{
                         "type":"postback",
                         "title":"In the last 5 days",
