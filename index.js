@@ -10,7 +10,7 @@ const url = require('url')
 
 let Responder = require('./responder');
 let responder = new Responder();
-let Tests = require('./tests/tests.js');
+//let Tests = require('./tests/tests.js');
 //let tests = new Tests(true);
 // read a config value to control whether to run tests
 // and maybe define which tests to run by name
@@ -51,13 +51,12 @@ app.post('/webhook/', function (req, res) {
 		if (event.message && event.message.text) {            
 			let text = event.message.text.toLowerCase();
 
-            if (text === 'quick reply') {
-				responder.respond(sender, token, "Welcome.QuickReply");
-				continue
-			}
+            // if (text === 'quick reply') {
+			// 	responder.respond(sender, token, "Welcome.QuickReply");
+			// 	continue
+			// }
 
-            if (text === "hi" || text === "hello") {
-                // wrap all interactions?
+            if (text === "hi" || text === "hello") {                
                 responder.getUserFirstname(sender, token, function(firstname) {
                     var intro = { "text" : `Hi ${firstname}. What can I help you with today?` };
                     responder.sendMessage(sender, token, intro);
