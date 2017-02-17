@@ -185,7 +185,7 @@
                     "template_type":"generic",
                     "elements":[{
                         "title": "It might be that you’ve gone on to our standard tariff. Have a look on your bill",
-                        "image_url": "https://placehold.it/350x150",
+                        "image_url": "https://truepower.herokuapp.com/assets/bill-section.png",
                         "subtitle": "It will say here"
                     }]
                 }
