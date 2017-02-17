@@ -78,11 +78,11 @@ app.post('/webhook/', function (req, res) {
             responder.respond(sender, token, event.postback.payload)
 			continue
 		}
-        if (event.message.quick_reply) {
-            console.log('quick reply!');
-            console.log(event.message);
-            responder.respond(sender, token, event.message.quick_reply.payload)
-        }
+        // if (event.message.quick_reply) {
+        //     console.log('quick reply!');
+        //     console.log(event.message);
+        //     responder.respond(sender, token, event.message.quick_reply.payload)
+        // }
 	}
 	res.sendStatus(200)
 })
