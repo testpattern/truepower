@@ -6,8 +6,10 @@ const app = express()
 class Tests {
 
     constructor(run) {
-        this.sender = "1235693409813391";
-        this.token = "EAAaXW9BqZA2IBAGQgmZBZAyEeMg5CJHNmlT9Wogej50lytdSICHtdHqqFZBldXwnXutUNZC7fHz4NIy7cOq1C5xIqL9z78A1ab2MuBrlXDEl9MvZADRHJC5U8GkOIdeNNlZBKLuThTbMGBpEcOqGXhrmvAZAsFTw6T2xjHkwg6vOZAAZDZD";        
+        // you need a config.json file with the sender id and fb token to make these work
+        this.config = require('./config.json');
+        this.sender = this.config.sender;
+        this.token = this.config.token;
         if (run) {
             this.quickReply();
             this.image();
